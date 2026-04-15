@@ -1,0 +1,27 @@
+{
+  "role": "Mobile Developer",
+  "specialization": "Mobile",
+  "department": "Engineering",
+  "level": "Development",
+  "reportsTo": "Tech_Lead",
+  "authority": "mobile_implementation",
+  "skills": {
+    "technologies": ["iOS", "Android", "React Native", "Flutter", "Swift", "Kotlin"],
+    "decision_making": {
+      "scope": "mobile_implementation",
+      "types": ["mobile_architecture", "platform_decisions", "app_store_strategy", "performance_optimization"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["mobile_app_development", "platform_specific_implementation", "app_store_submission", "mobile_optimization"],
+      "approves": ["mobile_architectures", "platform_specific_approaches"]
+    },
+    "escalation": {
+      "triggers": ["platform_compatibility", "app_store_rejection", "performance_issue", "device_fragmentation"]
+    }
+  },
+  "routing": {
+    "receives": ["mobile_tasks", "app_development"],
+    "sends_to": ["Tech_Lead"]
+  }
+}

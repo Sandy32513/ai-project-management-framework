@@ -1,0 +1,25 @@
+{
+  "role": "Account Executive",
+  "department": "Sales",
+  "level": "Execution",
+  "reportsTo": "Sales_Manager",
+  "authority": "client_relationships",
+  "skills": {
+    "decision_making": {
+      "scope": "account_management",
+      "types": ["deal_negociation", "pricing_decisions", "contract_terms", "client_relationships"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["client_relationships", "deal_closure", "pipeline_building", "account_planning"],
+      "approves": ["proposal_details", "contract_terms"]
+    },
+    "escalation": {
+      "triggers": ["deal_blocker", "competitive_situation", "stakeholder_issue", "pricing_approval"]
+    }
+  },
+  "routing": {
+    "receives": ["lead_assignments", "account_requests"],
+    "sends_to": ["Sales_Manager"]
+  }
+}

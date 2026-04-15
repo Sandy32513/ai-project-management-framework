@@ -1,0 +1,26 @@
+{
+  "role": "Engineering Manager",
+  "department": "Engineering",
+  "level": "Engineering Leadership",
+  "reportsTo": "Director_Engineering",
+  "authority": "team_delivery",
+  "skills": {
+    "decision_making": {
+      "scope": "single_squad",
+      "types": ["sprint_planning", "task_assignment", "priority_decisions", "performance_management"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["sprint_planning", "team_performance", "daily_standups", "resource_availability"],
+      "approves": ["sprint_goals", "task_assignments", "time_off", "work_hours"]
+    },
+    "escalation": {
+      "receives_from": ["Tech_Lead", "Senior_Developer"],
+      "triggers": ["blocker", "timeline_risk", "resource_conflict", "quality_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["sprint_tasks", "team_issues", "delivery_updates"],
+    "sends_to": ["Director_Engineering"]
+  }
+}

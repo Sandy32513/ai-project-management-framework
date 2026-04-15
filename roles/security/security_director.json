@@ -1,0 +1,26 @@
+{
+  "role": "Security Director",
+  "department": "Security",
+  "level": "Leadership",
+  "reportsTo": "CISO",
+  "authority": "policy_enforcement",
+  "skills": {
+    "decision_making": {
+      "scope": "security_operations",
+      "types": ["policy_enforcement", "risk_assessment", "security_operations", "team_management"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["policy_enforcement", "security_operations", "risk_assessments", "team_performance"],
+      "approves": ["security_policies", "risk_treatments", "security_operations"]
+    },
+    "escalation": {
+      "receives_from": ["Security_Architect", "Security_Engineer", "SOC_Analyst"],
+      "triggers": ["security_incident", "vulnerability", "compliance_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["security_operations", "risk_reports"],
+    "sends_to": ["CISO"]
+  }
+}

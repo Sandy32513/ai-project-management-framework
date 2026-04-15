@@ -1,0 +1,27 @@
+{
+  "role": "Full Stack Developer",
+  "specialization": "Full Stack",
+  "department": "Engineering",
+  "level": "Development",
+  "reportsTo": "Tech_Lead",
+  "authority": "full_implementation",
+  "skills": {
+    "technologies": ["Frontend_Stack", "Backend_Stack", "Databases", "DevOps_Tools"],
+    "decision_making": {
+      "scope": "end_to_end_implementation",
+      "types": ["full_stack_design", "api_integration", "database_design", "deployment_approach"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["end_to_end_features", "api_integration", "database_implementation", "deployment"],
+      "approves": ["full_stack_approaches", "integration_designs"]
+    },
+    "escalation": {
+      "triggers": ["complex_integration", "performance_issue", "architecture_change"]
+    }
+  },
+  "routing": {
+    "receives": ["full_stack_tasks", "end_to_end_features"],
+    "sends_to": ["Tech_Lead"]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "role": "Sales Manager",
+  "department": "Sales",
+  "level": "Management",
+  "reportsTo": "VP_Sales",
+  "authority": "team_sales",
+  "skills": {
+    "decision_making": {
+      "scope": "sales_team",
+      "types": ["team_management", "deal_approval", "resource_allocation", "forecasting"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["team_sales", "deal_coaching", "forecasting", "pipeline_management"],
+      "approves": ["deal_discounts", "team_quotas", "territory_assignments"]
+    },
+    "escalation": {
+      "receives_from": ["Account_Executive"],
+      "triggers": ["deal_blocker", "pipeline_risk", "stakeholder_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["deal_requests", "pipeline_updates"],
+    "sends_to": ["VP_Sales"]
+  }
+}

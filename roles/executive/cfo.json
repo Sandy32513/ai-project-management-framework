@@ -1,0 +1,44 @@
+{
+  "role": "CFO",
+  "department": "Finance",
+  "level": "C-Suite",
+  "reportsTo": "CEO",
+  "authority": "financial",
+  "skills": {
+    "decision_making": {
+      "scope": "financial",
+      "types": ["budget", "financial_planning", "risk_management", "investment"],
+      "threshold": "high_impact",
+      "escalation_receives": ["budget_requests", "financial_risks", "investment_proposals"]
+    },
+    "task_handling": {
+      "owns": ["financial_strategy", "budget_allocation", "risk_management", "financial_reporting"],
+      "approves": ["annual_budget", "major_expenses", "investments", "financial_policies"],
+      "reviews": ["monthly_financials", "quarterly_forecasts", "annual_audit"]
+    },
+    "escalation": {
+      "receives_from": ["VP_Finance", "Finance_Manager", "Controller"],
+      "triggers": ["budget_crisis", "major_financial_risk", "audit_findings", "cash_flow_issues"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "financial_resources": true,
+      "cost_optimization": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["VP_Finance", "Finance_Manager"],
+    "outgoing": ["CEO"],
+    "emergency": ["immediate_ceo_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["financial", "budget_related"],
+    "reports": ["monthly_financial_summary", "quarterly_budget_review", "annual_audit"],
+    "approvals": ["budget_over_500k", "major_expenses", "investments"]
+  },
+  "automation": {
+    "monitors": ["budget_spending", "financial_kpis", "cash_flow"],
+    "auto_receives": ["budget_alerts", "financial_escalations", "expense_reports"],
+    "sign_off_required": ["annual_budget", "major_investments", "financial_reports"]
+  }
+}

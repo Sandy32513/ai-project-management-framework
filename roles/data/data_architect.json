@@ -1,0 +1,26 @@
+{
+  "role": "Data Architect",
+  "department": "Data",
+  "level": "Technical",
+  "reportsTo": "Head_of_Data",
+  "authority": "data_pipelines",
+  "skills": {
+    "decision_making": {
+      "scope": "data_architecture",
+      "types": ["data_pipeline_design", "warehouse_architecture", "data_modeling", "etl_strategy"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["data_pipeline_design", "data_architecture", "etl_frameworks", "data_modeling"],
+      "approves": ["pipeline_designs", "architecture_decisions", "data_models"]
+    },
+    "escalation": {
+      "receives_from": ["Data_Analyst", "Data_Scientist"],
+      "triggers": ["pipeline_failure", "performance_issue", "data_quality_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["architecture_requests", "pipeline_projects"],
+    "sends_to": ["Head_of_Data"]
+  }
+}

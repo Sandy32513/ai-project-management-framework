@@ -1,0 +1,26 @@
+{
+  "role": "IT Manager",
+  "department": "IT Support",
+  "level": "Leadership",
+  "reportsTo": "CIO",
+  "authority": "it_operations",
+  "skills": {
+    "decision_making": {
+      "scope": "it_operations",
+      "types": ["it_strategy", "resource_allocation", "vendor_management", "policy_enforcement"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["it_operations", "helpdesk_management", "asset_management", "policy_compliance"],
+      "approves": ["it_budget", "vendor_contracts", "policy_changes", "resource_allocation"]
+    },
+    "escalation": {
+      "receives_from": ["System_Admin", "IT_Support_Engineer"],
+      "triggers": ["major_outage", "data_loss", "security_incident", "budget_overrun"]
+    }
+  },
+  "routing": {
+    "receives": ["it_initiatives", "operational_reports"],
+    "sends_to": ["CIO"]
+  }
+}

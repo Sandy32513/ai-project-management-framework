@@ -1,0 +1,25 @@
+{
+  "role": "Helpdesk Technician",
+  "department": "IT Support",
+  "level": "Execution",
+  "reportsTo": "IT_Support_Engineer",
+  "authority": "ticket_handling",
+  "skills": {
+    "decision_making": {
+      "scope": "ticket_handling",
+      "types": ["ticket_routing", "basic_troubleshooting", "user_communication"],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["ticket_handling", "basic_troubleshooting", "user_onboarding", "faq_management"],
+      "approves": ["ticket_resolution"]
+    },
+    "escalation": {
+      "triggers": ["unresolvable_issue", "complex_problem", "system_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["support_tickets", "user_requests"],
+    "sends_to": ["IT_Support_Engineer"]
+  }
+}

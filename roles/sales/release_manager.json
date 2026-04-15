@@ -1,0 +1,26 @@
+{
+  "role": "Release Manager",
+  "department": "Cross-Functional",
+  "level": "Management",
+  "reportsTo": "VP_Engineering",
+  "authority": "release_planning",
+  "skills": {
+    "decision_making": {
+      "scope": "release_coordination",
+      "types": ["release_planning", "release_sequencing", "rollback_decisions", "release_criteria"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["release_planning", "release_coordination", "rollback_planning", "release_communication"],
+      "approves": ["release_signoff", "rollback_decisions", "release_schedule"]
+    },
+    "escalation": {
+      "receives_from": ["DevOps_Lead", "QA_Lead"],
+      "triggers": ["release_blocker", "test_failure", "deployment_issue", "rollback_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["release_requests", "deployment_schedule"],
+    "sends_to": ["VP_Engineering"]
+  }
+}

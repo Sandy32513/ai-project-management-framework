@@ -1,0 +1,25 @@
+{
+  "role": "Visual Designer",
+  "department": "Design",
+  "level": "Execution",
+  "reportsTo": "UX_Lead",
+  "authority": "graphics_branding",
+  "skills": {
+    "decision_making": {
+      "scope": "visual_design",
+      "types": ["visual_design", "branding", "illustration", "iconography"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["graphics", "branding", "illustration", "visual_identity"],
+      "approves": ["visual_assets", "brand_assets"]
+    },
+    "escalation": {
+      "triggers": ["brand_guideline_conflict", "stakeholder_feedback"]
+    }
+  },
+  "routing": {
+    "receives": ["visual_tasks", "branding_requests"],
+    "sends_to": ["UX_Lead"]
+  }
+}

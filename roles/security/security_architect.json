@@ -1,0 +1,26 @@
+{
+  "role": "Security Architect",
+  "department": "Security",
+  "level": "Technical",
+  "reportsTo": "Security_Director",
+  "authority": "secure_system_design",
+  "skills": {
+    "decision_making": {
+      "scope": "system_security_design",
+      "types": ["secure_architecture", "security_patterns", "encryption_strategy", "access_control_design"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["secure_system_design", "security_patterns", "threat_modeling", "security_requirements"],
+      "approves": ["architecture_security", "security_designs", "threat_models"]
+    },
+    "escalation": {
+      "receives_from": ["Security_Engineer"],
+      "triggers": ["complex_architecture_issue", "new_threat_vector", "security_design_conflict"]
+    }
+  },
+  "routing": {
+    "receives": ["security_design_requests", "architecture_reviews"],
+    "sends_to": ["Security_Director"]
+  }
+}

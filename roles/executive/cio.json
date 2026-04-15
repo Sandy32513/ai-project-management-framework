@@ -1,0 +1,44 @@
+{
+  "role": "CIO",
+  "department": "Internal IT",
+  "level": "C-Suite",
+  "reportsTo": "CEO",
+  "authority": "internal_it",
+  "skills": {
+    "decision_making": {
+      "scope": "internal_systems",
+      "types": ["internal_it", "infrastructure", "enterprise_systems", "digital_workplace"],
+      "threshold": "medium_impact",
+      "escalation_receives": ["major_it_projects", "vendor_contracts", "infrastructure_changes"]
+    },
+    "task_handling": {
+      "owns": ["internal_it_strategy", "enterprise_infrastructure", "it_operations", "digital_workplace"],
+      "approves": ["it_budget", "vendor_selection", "system_implementations", "it_policies"],
+      "reviews": ["it_performance", "infrastructure_health", "user_satisfaction"]
+    },
+    "escalation": {
+      "receives_from": ["IT_Manager", "System_Admin_Lead", "Helpdesk_Manager"],
+      "triggers": ["major_system_outage", "data_loss", "security_incident_internal", "budget_overrun"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "internal_it_resources": true,
+      "hardware_assets": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["IT_Manager", "System_Admin_Lead"],
+    "outgoing": ["CEO"],
+    "emergency": ["immediate_ceo_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["internal_it", "infrastructure", "enterprise_systems"],
+    "reports": ["monthly_it_summary", "quarterly_infrastructure_plan"],
+    "approvals": ["major_it_purchases", "vendor_contracts_it"]
+  },
+  "automation": {
+    "monitors": ["system_uptime", "ticket_queue", "asset_management"],
+    "auto_receives": ["it_escalations", "infrastructure_alerts"],
+    "sign_off_required": ["major_system_changes", "vendor_contracts"]
+  }
+}

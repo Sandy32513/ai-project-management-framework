@@ -1,0 +1,26 @@
+{
+  "role": "VP/Director DevOps",
+  "department": "DevOps",
+  "level": "Leadership",
+  "reportsTo": "CTO",
+  "authority": "infrastructure_strategy",
+  "skills": {
+    "decision_making": {
+      "scope": "infrastructure",
+      "types": ["infrastructure_strategy", "cloud_strategy", "ci_cd_strategy", "cost_optimization"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["infrastructure_roadmap", "cloud_strategy", "ci_cd_excellence", "cost_management"],
+      "approves": ["infrastructure_budget", "cloud_vendor", "ci_cd_changes", "architecture_changes"]
+    },
+    "escalation": {
+      "receives_from": ["DevOps_Manager", "DevOps_Lead"],
+      "triggers": ["infrastructure_failure", "security_issue", "budget_overrun", "outage"]
+    }
+  },
+  "routing": {
+    "receives": ["infrastructure_projects", "cloud_migrations", "ci_cd_initiatives"],
+    "sends_to": ["CTO"]
+  }
+}

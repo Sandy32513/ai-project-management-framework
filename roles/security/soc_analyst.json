@@ -1,0 +1,26 @@
+{
+  "role": "SOC Analyst",
+  "department": "Security",
+  "level": "Execution",
+  "reportsTo": "Security_Engineer",
+  "authority": "threat_monitoring",
+  "skills": {
+    "decision_making": {
+      "scope": "threat_analysis",
+      "types": ["alert_analysis", "threat_identification", "initial_response", "escalation_decision"],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["threat_monitoring", "alert_analysis", "incident_triage", "initial_response"],
+      "approves": ["alert_classification", "initial_assessment"]
+    },
+    "escalation": {
+      "receives_from": [],
+      "triggers": ["critical_alert", "suspected_incident", "anomaly_detected"]
+    }
+  },
+  "routing": {
+    "receives": ["security_alerts", "monitoring_reports"],
+    "sends_to": ["Security_Engineer"]
+  }
+}

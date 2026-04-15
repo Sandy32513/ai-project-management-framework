@@ -1,0 +1,44 @@
+{
+  "role": "Director",
+  "department": "Department_Varies",
+  "level": "Senior Leadership",
+  "reportsTo": "VP",
+  "authority": "multi_team",
+  "skills": {
+    "decision_making": {
+      "scope": "multi_team",
+      "types": ["team_strategy", "delivery_planning", "prioritization", "resolution"],
+      "threshold": "medium_low_impact",
+      "escalation_receives": ["team_conflicts", "delivery_risks", "resource_requests"]
+    },
+    "task_handling": {
+      "owns": ["team_strategy", "delivery_planning", "cross_team_coordination", "performance_management"],
+      "approves": ["team_priorities", "resource_requests", "timeline_changes", "team_budget"],
+      "reviews": ["team_delivery", "sprint_performance", "team_health", "stakeholder_satisfaction"]
+    },
+    "escalation": {
+      "receives_from": ["Senior_Manager", "Manager", "Team_Lead"],
+      "triggers": ["delivery_delay", "budget_overrun", "team_conflict", "stakeholder_issue"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "team_resources": true,
+      "allocation_adjustments": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Senior_Manager", "Manager"],
+    "outgoing": ["VP"],
+    "emergency": ["vp_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["cross_team", "department_level"],
+    "reports": ["weekly_delivery_report", "biweekly_performance_review"],
+    "approvals": ["team_priorities", "resource_requests"]
+  },
+  "automation": {
+    "monitors": ["team_delivery", "sprint_status", "team_health"],
+    "auto_receives": ["delivery_escalations", "team_alerts"],
+    "sign_off_required": ["team_releases", "timeline_changes"]
+  }
+}

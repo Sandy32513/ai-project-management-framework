@@ -1,0 +1,26 @@
+{
+  "role": "CPO/VP Product",
+  "department": "Product",
+  "level": "Leadership",
+  "reportsTo": "CEO",
+  "authority": "product_vision",
+  "skills": {
+    "decision_making": {
+      "scope": "product_strategy",
+      "types": ["product_vision", "product_strategy", "roadmap_prioritization", "market_positioning"],
+      "threshold": "high_impact"
+    },
+    "task_handling": {
+      "owns": ["product_vision", "product_strategy", "roadmap", "market_positioning"],
+      "approves": ["product_roadmap", "feature_priorities", "product_budget", "market_strategy"]
+    },
+    "escalation": {
+      "receives_from": ["Product_Director", "Product_Manager"],
+      "triggers": ["market_shift", "competitive_threat", "major_roadmap_change", "budget_crisis"]
+    }
+  },
+  "routing": {
+    "receives": ["product_strategy", "roadmap_requests"],
+    "sends_to": ["CEO"]
+  }
+}

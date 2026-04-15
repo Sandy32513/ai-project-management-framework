@@ -1,0 +1,26 @@
+{
+  "role": "VP Engineering",
+  "department": "Engineering",
+  "level": "Engineering Leadership",
+  "reportsTo": "CTO",
+  "authority": "engineering_strategy",
+  "skills": {
+    "decision_making": {
+      "scope": "engineering_department",
+      "types": ["engineering_strategy", "team_scaling", "technology_selection", "roadmap_planning"],
+      "threshold": "medium_high_impact"
+    },
+    "task_handling": {
+      "owns": ["engineering_strategy", "team_growth", "technology_roadmap", "engineering_excellence"],
+      "approves": ["engineering_budget", "hiring_plans", "technology_decisions", "architecture_changes"]
+    },
+    "escalation": {
+      "receives_from": ["Director_Engineering", "Engineering_Manager"],
+      "triggers": ["team_conflict", "delivery_failure", "technology_crisis", "budget_overrun"]
+    }
+  },
+  "routing": {
+    "receives": ["strategic_engineering_projects", "architecture_proposals", "team_requests"],
+    "sends_to": ["CTO"]
+  }
+}

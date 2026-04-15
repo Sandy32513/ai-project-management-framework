@@ -1,0 +1,25 @@
+{
+  "role": "QA Intern",
+  "department": "QA",
+  "level": "Entry",
+  "reportsTo": "QA_Engineer",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": [],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["learning", "test_case_execution", "documentation"],
+      "approves": []
+    },
+    "escalation": {
+      "triggers": ["blocker", "clarification_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["simple_test_cases"],
+    "sends_to": ["QA_Engineer"]
+  }
+}

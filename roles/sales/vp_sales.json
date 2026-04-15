@@ -1,0 +1,26 @@
+{
+  "role": "VP Sales",
+  "department": "Sales",
+  "level": "Leadership",
+  "reportsTo": "CCO",
+  "authority": "sales_strategy",
+  "skills": {
+    "decision_making": {
+      "scope": "sales_strategy",
+      "types": ["sales_strategy", "territory_planning", "quotas", "commission_structure"],
+      "threshold": "high_impact"
+    },
+    "task_handling": {
+      "owns": ["sales_strategy", "territory_planning", "sales_targets", "team_performance"],
+      "approves": ["sales_budget", "quota_changes", "commission_structures", "hiring_plans"]
+    },
+    "escalation": {
+      "receives_from": ["Sales_Manager", "Account_Executive"],
+      "triggers": ["major_deal_blocker", "pipeline_shortfall", "competitive_loss", "team_conflict"]
+    }
+  },
+  "routing": {
+    "receives": ["sales_initiatives", "pipeline_reports"],
+    "sends_to": ["CCO"]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "escalation_system": {
+    "name": "AI Project Management Escalation System",
+    "version": "1.0.0",
+    "description": "Manages task and issue escalation across the hierarchy"
+  },
+  "tiers": [
+    {
+      "tier": 1,
+      "name": "Team Level",
+      "from_levels": ["Individual Contributor", "Intern"],
+      "to_levels": ["Team Lead", "Manager"],
+      "timeout": "24h",
+      "description": "Escalation from junior staff to team leadership"
+    },
+    {
+      "tier": 2,
+      "name": "Department Level",
+      "from_levels": ["Manager", "Team Lead"],
+      "to_levels": ["Director", "VP"],
+      "timeout": "48h",
+      "description": "Escalation from team leadership to department leadership"
+    },
+    {
+      "tier": 3,
+      "name": "Executive Level",
+      "from_levels": ["Director", "VP"],
+      "to_levels": ["C-Suite"],
+      "timeout": "72h",
+      "description": "Escalation from department leadership to executive leadership"
+    }
+  ],
+  "escalation_triggers": {
+    "timeout": {
+      "description": "Task exceeds time threshold without completion",
+      "conditions": [
+        { "threshold": "24h", "action": "escalate_tier_1" },
+        { "threshold": "48h", "action": "escalate_tier_2" },
+        { "threshold": "72h", "action": "escalate_tier_3" }
+      ]
+    },
+    "priority": {
+      "description": "Task priority requires immediate escalation",
+      "conditions": [
+        { "priority": "critical", "action": "escalate_to_manager" },
+        { "priority": "p1_critical", "action": "escalate_to_c_suite" }
+      ]
+    },
+    "budget": {
+      "description": "Budget thresholds trigger escalation",
+      "conditions": [
+        { "threshold": "10%_over_budget", "action": "escalate_to_manager" },
+        { "threshold": "20%_over_budget", "action": "escalate_to_director" },
+        { "threshold": "30%_over_budget", "action": "escalate_to_c_suite" }
+      ]
+    },
+    "security": {
+      "description": "Security issues always escalate to CISO",
+      "conditions": [
+        { "trigger": "security_incident", "action": "escalate_to_ciso" },
+        { "trigger": "data_breach", "action": "escalate_to_ciso_and_ceo" },
+        { "trigger": "vulnerability", "action": "escalate_to_security_team" }
+      ]
+    },
+    "quality": {
+      "description": "Quality issues escalate to QA leadership",
+      "conditions": [
+        { "trigger": "critical_bug", "action": "escalate_to_qa_lead" },
+        { "trigger": "release_blocker", "action": "escalate_to_qa_manager" },
+        { "trigger": "test_coverage_below_80%", "action": "escalate_to_qa_lead" }
+      ]
+    }
+  },
+  "escalation_paths": {
+    "engineering": {
+      "path": [
+        "Junior Engineer → Senior Engineer → Tech Lead → Engineering Manager → Director → VP Engineering → CTO"
+      ]
+    },
+    "product": {
+      "path": [
+        "Associate PM → Product Manager → Product Director → VP Product → CEO"
+      ]
+    },
+    "design": {
+      "path": [
+        "Design Intern → Designer → UX Lead → UX Manager → Design Director → CEO"
+      ]
+    },
+    "qa": {
+      "path": [
+        "QA Intern → QA Engineer → Senior QA Engineer → QA Lead → QA Manager → VP Engineering → CTO"
+      ]
+    },
+    "devops": {
+      "path": [
+        "DevOps Intern → DevOps Engineer → Senior DevOps Engineer → DevOps Lead → DevOps Manager → VP DevOps → CTO"
+      ]
+    },
+    "security": {
+      "path": [
+        "Security Intern → SOC Analyst → Security Engineer → Security Architect → Security Director → CISO → CEO"
+      ]
+    },
+    "data": {
+      "path": [
+        "Data Intern → Data Analyst → Data Scientist → Data Architect → Head of Data → CEO"
+      ]
+    }
+  },
+  "notification_rules": {
+    "on_escalation": {
+      "notify_original_owner": true,
+      "notify_new_owner": true,
+      "notify_manager": true,
+      "log_escalation": true
+    },
+    "critical_escalation": {
+      "notify_c_suite": true,
+      "create_incident_ticket": true,
+      "page_on_call": true
+    }
+  }
+}

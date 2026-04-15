@@ -1,0 +1,27 @@
+{
+  "role": "Backend Developer",
+  "specialization": "Backend",
+  "department": "Engineering",
+  "level": "Development",
+  "reportsTo": "Tech_Lead",
+  "authority": "server_implementation",
+  "skills": {
+    "technologies": ["Node.js", "Python", "Java", "Go", "Ruby", "SQL", "NoSQL", "REST", "GraphQL"],
+    "decision_making": {
+      "scope": "backend_implementation",
+      "types": ["api_design", "database_design", "service_architecture", "performance_optimization"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["api_development", "database_implementation", "service_logic", "backend_optimization"],
+      "approves": ["api_designs", "database_schemas", "service_architectures"]
+    },
+    "escalation": {
+      "triggers": ["performance_issue", "database_design_problem", "api_security_concern"]
+    }
+  },
+  "routing": {
+    "receives": ["api_tasks", "backend_projects"],
+    "sends_to": ["Tech_Lead"]
+  }
+}

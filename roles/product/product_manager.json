@@ -1,0 +1,26 @@
+{
+  "role": "Product Manager",
+  "department": "Product",
+  "level": "Execution",
+  "reportsTo": "Product_Director",
+  "authority": "feature_planning",
+  "skills": {
+    "decision_making": {
+      "scope": "feature_level",
+      "types": ["feature_planning", "requirement_prioritization", "user_story_creation", "stakeholder_management"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["feature_planning", "requirements", "user_stories", "stakeholder_communication"],
+      "approves": ["feature_requirements", "user_stories", "acceptance_criteria"]
+    },
+    "escalation": {
+      "receives_from": ["Associate_PM"],
+      "triggers": ["requirement_conflict", "stakeholder_issue", "scope_change", "timeline_risk"]
+    }
+  },
+  "routing": {
+    "receives": ["feature_requests", "requirement_documents"],
+    "sends_to": ["Product_Director"]
+  }
+}

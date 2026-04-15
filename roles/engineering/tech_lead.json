@@ -1,0 +1,26 @@
+{
+  "role": "Tech Lead",
+  "department": "Engineering",
+  "level": "Technical",
+  "reportsTo": "Engineering_Manager",
+  "authority": "technical_direction",
+  "skills": {
+    "decision_making": {
+      "scope": "technical_team",
+      "types": ["architecture_decisions", "code_reviews", "design_approvals", "technical_approach"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["technical_direction", "code_quality", "design_patterns", "technical_mentoring"],
+      "approves": ["code_merges", "design_documents", "technical_approaches", "test_strategies"]
+    },
+    "escalation": {
+      "receives_from": ["Senior_Developer", "Developer"],
+      "triggers": ["complex_technical_issue", "architecture_change", "design_conflict"]
+    }
+  },
+  "routing": {
+    "receives": ["technical_proposals", "design_documents", "code_reviews"],
+    "sends_to": ["Engineering_Manager"]
+  }
+}

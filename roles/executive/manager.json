@@ -1,0 +1,44 @@
+{
+  "role": "Manager",
+  "department": "Department_Varies",
+  "level": "Mid-Level Leadership",
+  "reportsTo": "Senior_Manager",
+  "authority": "team",
+  "skills": {
+    "decision_making": {
+      "scope": "team",
+      "types": ["task_assignment", "priority_decisions", "resource_timing", "issue_resolution"],
+      "threshold": "low_impact",
+      "escalation_receives": ["technical_blockers", "timeline_risks", "resource_conflicts"]
+    },
+    "task_handling": {
+      "owns": ["team_delivery", "task_assignment", "performance_tracking", "daily_standups"],
+      "approves": ["task_completion", "time_off", "work_hours", "team_activities"],
+      "reviews": ["daily_progress", "task_completion", "team_availability", "blockers"]
+    },
+    "escalation": {
+      "receives_from": ["Team_Lead", "Senior_Engineer"],
+      "triggers": ["technical_blocker", "timeline_risk", "resource_conflict", "quality_issue"]
+    },
+    "resource_allocation": {
+      "budget_authority": false,
+      "team_resources": true,
+      "task_allocation": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Team_Lead", "Senior_Engineer"],
+    "outgoing": ["Senior_Manager"],
+    "emergency": ["senior_manager_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["team_level", "task_level"],
+    "reports": ["daily_standup_summary", "weekly_status_report"],
+    "approves": ["task_completion", "daily_priorities"]
+  },
+  "automation": {
+    "monitors": ["task_status", "team_availability", "sprint_progress"],
+    "auto_receives": ["blocker_notifications", "task_updates"],
+    "sign_off_required": ["daily_standups", "task_completion"]
+  }
+}

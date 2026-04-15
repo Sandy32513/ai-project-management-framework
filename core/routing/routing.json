@@ -1,0 +1,212 @@
+{
+  "routing_engine": {
+    "name": "AI Project Routing Engine",
+    "version": "1.0.0",
+    "description": "Automatic routing of projects to appropriate teams based on skill matching, priority, and authority levels"
+  },
+  "strategies": {
+    "primary": {
+      "name": "skill_based",
+      "description": "Routes projects based on required skills matching available roles",
+      "algorithm": "skill_match"
+    },
+    "fallback": {
+      "name": "round_robin",
+      "description": "Falls back to round-robin when skill match is ambiguous",
+      "algorithm": "load_balanced"
+    }
+  },
+  "filters": {
+    "required": [
+      {
+        "filter": "department",
+        "description": "Project department must match role department",
+        "priority": 1
+      },
+      {
+        "filter": "skill_match",
+        "description": "Required skills must match role capabilities",
+        "priority": 2
+      },
+      {
+        "filter": "authority_level",
+        "description": "Role authority must meet project impact threshold",
+        "priority": 3
+      }
+    ],
+    "optional": [
+      {
+        "filter": "current_load",
+        "description": "Consider current task load of role",
+        "priority": 4
+      },
+      {
+        "filter": "availability",
+        "description": "Check role availability and timezone",
+        "priority": 5
+      },
+      {
+        "filter": "expertise_area",
+        "description": "Match specific expertise area",
+        "priority": 6
+      }
+    ]
+  },
+  "project_routing": {
+    "new_project": {
+      "triggers": ["project_creation", "project_import"],
+      "flow": [
+        {
+          "step": 1,
+          "action": "analyze_project",
+          "description": "Extract department, priority, required skills, impact level"
+        },
+        {
+          "step": 2,
+          "action": "match_skills",
+          "description": "Find roles with matching skills and department"
+        },
+        {
+          "step": 3,
+          "action": "check_authority",
+          "description": "Verify role authority meets project impact threshold"
+        },
+        {
+          "step": 4,
+          "action": "check_availability",
+          "description": "Verify role has capacity for new project"
+        },
+        {
+          "step": 5,
+          "action": "route",
+          "description": "Assign project to matched role with highest authority"
+        }
+      ]
+    },
+    "existing_project": {
+      "triggers": ["priority_change", "scope_change", "escalation", "reassignment"],
+      "flow": [
+        {
+          "step": 1,
+          "action": "reassess_project",
+          "description": "Re-analyze project with new parameters"
+        },
+        {
+          "step": 2,
+          "action": "compare_assignments",
+          "description": "Compare current assignment with new requirements"
+        },
+        {
+          "step": 3,
+          "action": "reassign_or_escalate",
+          "description": "Reassign to better match or escalate if needed"
+        }
+      ]
+    }
+  },
+  "ticket_routing": {
+    "new_ticket": {
+      "triggers": ["ticket_creation", "ticket_import"],
+      "flow": [
+        {
+          "step": 1,
+          "action": "classify_ticket",
+          "description": "Classify by type, priority, department"
+        },
+        {
+          "step": 2,
+          "action": "find_owner",
+          "description": "Route to appropriate role based on classification"
+        },
+        {
+          "step": 3,
+          "action": "set_sla",
+          "description": "Set response time based on priority"
+        }
+      ]
+    },
+    "ticket_monitoring": {
+      "interval": "15_minutes",
+      "checks": [
+        {
+          "check": "sla_breach_risk",
+          "action": "alert_owner"
+        },
+        {
+          "check": "escalation_needed",
+          "action": "escalate"
+        },
+        {
+          "check": "stale_ticket",
+          "action": "reassign"
+        }
+      ]
+    }
+  },
+  "auto_escalation_rules": {
+    "timeout_based": {
+      "description": "Escalate if task exceeds time threshold",
+      "rules": [
+        {
+          "threshold": "24h",
+          "from_level": "Individual Contributor",
+          "to_level": "Team Lead"
+        },
+        {
+          "threshold": "48h",
+          "from_level": "Team Lead/Manager",
+          "to_level": "Director"
+        },
+        {
+          "threshold": "72h",
+          "from_level": "Director/VP",
+          "to_level": "C-Suite"
+        }
+      ]
+    },
+    "priority_based": {
+      "description": "Escalate immediately on critical priority",
+      "rules": [
+        {
+          "priority": "critical",
+          "action": "escalate_to_manager",
+          "notify": "immediate"
+        },
+        {
+          "priority": "p1_critical",
+          "action": "escalate_to_c_suite",
+          "notify": "immediate"
+        }
+      ]
+    },
+    "trigger_based": {
+      "description": "Escalate on specific triggers",
+      "rules": [
+        {
+          "trigger": "budget_exceeded_10%",
+          "escalate_to": "Manager"
+        },
+        {
+          "trigger": "budget_exceeded_20%",
+          "escalate_to": "Director"
+        },
+        {
+          "trigger": "security_breach",
+          "escalate_to": "CISO"
+        },
+        {
+          "trigger": "security_incident",
+          "escalate_to": "CISO"
+        },
+        {
+          "trigger": "timeline_at_risk",
+          "escalate_to": "Manager"
+        },
+        {
+          "trigger": "resource_conflict",
+          "escalate_to": "Director"
+        }
+      ]
+    }
+  }
+}

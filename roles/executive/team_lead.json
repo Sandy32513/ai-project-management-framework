@@ -1,0 +1,44 @@
+{
+  "role": "Team Lead",
+  "department": "Engineering/Department",
+  "level": "Mid-Level Leadership",
+  "reportsTo": "Manager",
+  "authority": "technical",
+  "skills": {
+    "decision_making": {
+      "scope": "technical_team",
+      "types": ["technical_direction", "code_reviews", "architecture_input", "estimation"],
+      "threshold": "low_impact",
+      "escalation_receives": ["complex_technical_issues", "architecture_decisions", "technical_debt"]
+    },
+    "task_handling": {
+      "owns": ["technical_direction", "code_quality", "code_reviews", "technical_mentoring"],
+      "approves": ["code_merges", "technical_designs", "implementation_approaches", "test_strategies"],
+      "reviews": ["code_quality", "technical_standards", "design_patterns", "best_practices"]
+    },
+    "escalation": {
+      "receives_from": ["Senior_Engineer", "Mid_Level_Engineer"],
+      "triggers": ["complex_technical_issue", "architecture_change", "technical_blocker", "performance_issue"]
+    },
+    "resource_allocation": {
+      "budget_authority": false,
+      "technical_resources": true,
+      "task_distribution": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Senior_Engineer", "Mid_Level_Engineer"],
+    "outgoing": ["Manager"],
+    "emergency": ["manager_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["technical_implementation", "feature_development"],
+    "reports": ["code_review_summary", "technical_debt_report"],
+    "approves": ["code_merges", "technical_designs"]
+  },
+  "automation": {
+    "monitors": ["code_quality", "technical_standards", "team_velocity"],
+    "auto_receives": ["code_submissions", "test_results", "lint_results"],
+    "sign_off_required": ["code_merges", "technical_designs", "dev_deployment"]
+  }
+}

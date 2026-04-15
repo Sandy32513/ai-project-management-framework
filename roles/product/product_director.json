@@ -1,0 +1,26 @@
+{
+  "role": "Product Director",
+  "department": "Product",
+  "level": "Leadership",
+  "reportsTo": "VP_Product",
+  "authority": "product_roadmap",
+  "skills": {
+    "decision_making": {
+      "scope": "product_roadmap",
+      "types": ["roadmap_planning", "feature_prioritization", "portfolio_management", "stakeholder_alignment"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["product_roadmap", "feature_prioritization", "portfolio_strategy", "stakeholder_relations"],
+      "approves": ["roadmap_changes", "feature_priorities", "resource_allocation"]
+    },
+    "escalation": {
+      "receives_from": ["Product_Manager", "Associate_PM"],
+      "triggers": ["roadmap_blocker", "stakeholder_conflict", "resource_constraint"]
+    }
+  },
+  "routing": {
+    "receives": ["product_initiatives", "roadmap_proposals"],
+    "sends_to": ["VP_Product"]
+  }
+}

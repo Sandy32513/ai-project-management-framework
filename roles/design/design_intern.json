@@ -1,0 +1,25 @@
+{
+  "role": "Design Intern",
+  "department": "Design",
+  "level": "Entry",
+  "reportsTo": "UI_UX_Designer",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": [],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["learning", "mockup_assistance", "asset_organization"],
+      "approves": []
+    },
+    "escalation": {
+      "triggers": ["blocker", "clarification_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["simple_design_tasks", "asset_organization"],
+    "sends_to": ["UI_UX_Designer"]
+  }
+}

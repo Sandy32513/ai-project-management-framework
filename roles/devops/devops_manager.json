@@ -1,0 +1,26 @@
+{
+  "role": "DevOps Manager",
+  "department": "DevOps",
+  "level": "Leadership",
+  "reportsTo": "VP_Director_DevOps",
+  "authority": "ci_cd_planning",
+  "skills": {
+    "decision_making": {
+      "scope": "ci_cd_operations",
+      "types": ["ci_cd_planning", "resource_allocation", "tool_selection", "team_management"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["ci_cd_planning", "deployment_schedules", "team_performance", "tool_evaluation"],
+      "approves": ["deployment_schedules", "pipeline_changes", "tool_adoption"]
+    },
+    "escalation": {
+      "receives_from": ["DevOps_Lead", "Senior_DevOps_Engineer"],
+      "triggers": ["deployment_failure", "pipeline_issue", "resource_conflict"]
+    }
+  },
+  "routing": {
+    "receives": ["ci_cd_projects", "deployment_requests"],
+    "sends_to": ["VP_Director_DevOps"]
+  }
+}

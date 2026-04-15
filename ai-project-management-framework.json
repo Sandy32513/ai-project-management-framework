@@ -1,0 +1,136 @@
+{
+  "framework": {
+    "name": "AI Project Management Framework - Main Integration",
+    "version": "1.0.0",
+    "description": "Main entry point for integrating the autonomous project management framework"
+  },
+  "quick_start": {
+    "integration": [
+      {
+        "step": 1,
+        "action": "Download the framework",
+        "command": "git clone <repository-url>"
+      },
+      {
+        "step": 2,
+        "action": "Import core modules",
+        "code": "const framework = require('./ai-project-management-framework');"
+      },
+      {
+        "step": 3,
+        "action": "Initialize the hierarchy",
+        "code": "framework.init(config);"
+      },
+      {
+        "step": 4,
+        "action": "Start autonomous operation",
+        "code": "framework.start();"
+      }
+    ]
+  },
+  "api_reference": {
+    "routing": {
+      "routeProject": {
+        "description": "Automatically route new project to appropriate team",
+        "params": ["project"],
+        "returns": "assigned_role"
+      },
+      "routeTicket": {
+        "description": "Route support ticket to appropriate handler",
+        "params": ["ticket"],
+        "returns": "assigned_handler"
+      }
+    },
+    "escalation": {
+      "escalate": {
+        "description": "Escalate task to next level",
+        "params": ["task", "reason"],
+        "returns": "escalation_result"
+      },
+      "getEscalationPath": {
+        "description": "Get escalation path for a department",
+        "params": ["department"],
+        "returns": "path_array"
+      }
+    },
+    "decision": {
+      "makeDecision": {
+        "description": "Make decision based on authority level",
+        "params": ["decision_type", "context"],
+        "returns": "decision_result"
+      },
+      "getAuthorityLevel": {
+        "description": "Get decision authority for a role",
+        "params": ["role"],
+        "returns": "authority_info"
+      }
+    },
+    "resources": {
+      "allocate": {
+        "description": "Allocate resources to project",
+        "params": ["project", "resources"],
+        "returns": "allocation_result"
+      },
+      "rebalance": {
+        "description": "Rebalance resource allocation",
+        "params": [],
+        "returns": "rebalance_result"
+      }
+    },
+    "reporting": {
+      "generateReport": {
+        "description": "Generate report for specified type",
+        "params": ["report_type", "period"],
+        "returns": "report_data"
+      },
+      "sendToCEO": {
+        "description": "Send critical report directly to CEO",
+        "params": ["report", "priority"],
+        "returns": "send_result"
+      }
+    },
+    "deployment": {
+      "requestDeployment": {
+        "description": "Request deployment with approval chain",
+        "params": ["deployment_request"],
+        "returns": "approval_chain"
+      },
+      "approveDeployment": {
+        "description": "Approve deployment at current level",
+        "params": ["deployment_id", "approver"],
+        "returns": "approval_result"
+      }
+    }
+  },
+  "configuration": {
+    "required": [
+      "hierarchy.json",
+      "routing.json",
+      "escalation.json"
+    ],
+    "optional": [
+      "decision.json",
+      "resource_allocation.json",
+      "audit.json"
+    ]
+  },
+  "usage_example": {
+    "javascript": "\n// Initialize framework\nconst framework = require('./ai-project-management-framework');\n\n// Configure hierarchy\nframework.config.loadHierarchy('./config/hierarchy.json');\n\n// Route a new project\nconst project = {\n  name: \"New Feature Development\",\n  department: \"engineering\",\n  priority: \"high\",\n  required_skills: [\"backend\", \"frontend\"],\n  budget: 50000\n};\n\nconst assignedRole = framework.routing.routeProject(project);\nconsole.log(\"Project assigned to:\", assignedRole);\n\n// Monitor tickets\nframework.ticketMonitoring.start();\n\n// Generate CEO report\nconst report = framework.reporting.generateReport('quarterly_audit');\nframework.reporting.sendToCEO(report);\n"
+  },
+  "environment_variables": {
+    "FRAMEWORK_MODE": "autonomous | supervised",
+    "LOG_LEVEL": "debug | info | warning | error",
+    "AUTO_ESCALATION": "true | false",
+    "CEO_FINAL_REPORT": "true | false"
+  },
+  "metrics": {
+    "tracked": [
+      "project_completion_rate",
+      "escalation_frequency",
+      "decision_accuracy",
+      "resource_utilization",
+      "deployment_success_rate",
+      "sla_compliance"
+    ]
+  }
+}

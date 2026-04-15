@@ -1,0 +1,44 @@
+{
+  "role": "Senior Engineer",
+  "department": "Engineering",
+  "level": "Individual Contributor",
+  "reportsTo": "Team_Lead",
+  "authority": "complex_problems",
+  "skills": {
+    "decision_making": {
+      "scope": "technical_implementation",
+      "types": ["implementation_decisions", "technical_solutions", "code_approaches", "problem_solving"],
+      "threshold": "low_medium_impact",
+      "escalation_receives": ["complex_bugs", "technical_blockers", "design_clarifications"]
+    },
+    "task_handling": {
+      "owns": ["complex_features", "technical_challenges", "mentoring", "code_reviews"],
+      "approves": ["code_approaches", "implementation_details", "technical_solutions"],
+      "reviews": ["code_submissions", "technical_designs", "implementation_plans"]
+    },
+    "escalation": {
+      "receives_from": ["Mid_Level_Engineer", "Junior_Engineer"],
+      "triggers": ["complex_technical_issue", "design_clarification_needed", "performance_issue", "technical_blocker"]
+    },
+    "resource_allocation": {
+      "budget_authority": false,
+      "task_assignment": true,
+      "mentoring": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Mid_Level_Engineer", "Junior_Engineer"],
+    "outgoing": ["Team_Lead"],
+    "emergency": ["team_lead_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["complex_feature", "technical_challenge"],
+    "reports": ["code_review_summary", "implementation_report"],
+    "approves": ["code_approaches", "implementation_details"]
+  },
+  "automation": {
+    "monitors": ["code_quality", "technical_standards", "task_progress"],
+    "auto_receives": ["code_submissions", "test_results"],
+    "sign_off_required": ["code_merges", "complex_feature_completion"]
+  }
+}

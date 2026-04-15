@@ -1,0 +1,26 @@
+{
+  "role": "QA Director/Manager",
+  "department": "QA",
+  "level": "Leadership",
+  "reportsTo": "VP_Engineering",
+  "authority": "qa_strategy",
+  "skills": {
+    "decision_making": {
+      "scope": "qa_department",
+      "types": ["qa_strategy", "testing_approach", "release_criteria", "quality_standards"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["qa_strategy", "testing_methodology", "quality_standards", "release_quality"],
+      "approves": ["qa_budget", "testing_tools", "release_signoff", "quality_metrics"]
+    },
+    "escalation": {
+      "receives_from": ["QA_Lead", "Senior_QA_Engineer"],
+      "triggers": ["release_blocker", "critical_bug", "quality_regression", "test_coverage_gap"]
+    }
+  },
+  "routing": {
+    "receives": ["qa_initiatives", "quality_reports", "release_requests"],
+    "sends_to": ["VP_Engineering"]
+  }
+}

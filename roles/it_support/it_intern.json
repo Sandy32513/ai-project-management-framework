@@ -1,0 +1,25 @@
+{
+  "role": "IT Intern",
+  "department": "IT Support",
+  "level": "Entry",
+  "reportsTo": "Helpdesk_Technician",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": [],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["learning", "basic_troubleshooting", "documentation"],
+      "approves": []
+    },
+    "escalation": {
+      "triggers": ["blocker", "clarification_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["simple_tasks", "learning_exercises"],
+    "sends_to": ["Helpdesk_Technician"]
+  }
+}

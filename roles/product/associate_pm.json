@@ -1,0 +1,26 @@
+{
+  "role": "Associate PM",
+  "department": "Product",
+  "level": "Execution",
+  "reportsTo": "Product_Manager",
+  "authority": "requirement_gathering",
+  "skills": {
+    "decision_making": {
+      "scope": "task_level",
+      "types": ["requirement_gathering", "user_research", "documentation"],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["requirement_gathering", "user_research", "feature_documentation", "market_analysis"],
+      "approves": ["requirement_documents"]
+    },
+    "escalation": {
+      "receives_from": ["PM_Intern"],
+      "triggers": ["requirement_clarification", "research_blocker"]
+    }
+  },
+  "routing": {
+    "receives": ["research_tasks", "documentation_tasks"],
+    "sends_to": ["Product_Manager"]
+  }
+}

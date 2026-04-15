@@ -1,0 +1,26 @@
+{
+  "role": "Head of Data",
+  "department": "Data",
+  "level": "Leadership",
+  "reportsTo": "CEO",
+  "authority": "data_strategy",
+  "skills": {
+    "decision_making": {
+      "scope": "data_strategy",
+      "types": ["data_strategy", "analytics_roadmap", "data_governance", "ml_strategy"],
+      "threshold": "high_impact"
+    },
+    "task_handling": {
+      "owns": ["data_strategy", "analytics_roadmap", "data_governance", "ml_initiatives"],
+      "approves": ["data_strategy", "analytics_projects", "data_governance_policies"]
+    },
+    "escalation": {
+      "receives_from": ["Data_Architect", "Data_Scientist"],
+      "triggers": ["data_crisis", "governance_violation", "major_analytics_initiative"]
+    }
+  },
+  "routing": {
+    "receives": ["data_initiatives", "analytics_projects"],
+    "sends_to": ["CEO"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "role": "DevOps Intern",
+  "department": "DevOps",
+  "level": "Entry",
+  "reportsTo": "DevOps_Engineer",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": [],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["learning", "script_assistance", "documentation"],
+      "approves": []
+    },
+    "escalation": {
+      "triggers": ["blocker", "clarification_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["simple_tasks", "learning_exercises"],
+    "sends_to": ["DevOps_Engineer"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "role": "DevOps Engineer",
+  "department": "DevOps",
+  "level": "Execution",
+  "reportsTo": "Senior_DevOps_Engineer",
+  "authority": "build_pipelines",
+  "skills": {
+    "decision_making": {
+      "scope": "task_level",
+      "types": ["pipeline_configuration", "deployment_steps"],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["build_pipelines", "deployment_execution", "script_maintenance", "documentation"],
+      "approves": ["pipeline_configs"]
+    },
+    "escalation": {
+      "triggers": ["pipeline_failure", "deployment_failure", "script_error"]
+    }
+  },
+  "routing": {
+    "receives": ["pipeline_tasks", "deployment_tasks"],
+    "sends_to": ["Senior_DevOps_Engineer"]
+  }
+}
