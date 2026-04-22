@@ -1,0 +1,26 @@
+{
+  "role": "IT Support Engineer",
+  "department": "IT Support",
+  "level": "Execution",
+  "reportsTo": "System_Admin",
+  "authority": "issue_resolution",
+  "skills": {
+    "decision_making": {
+      "scope": "issue_resolution",
+      "types": ["troubleshooting", "issue_diagnosis", "solution_implementation", "escalation_decision"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["issue_resolution", "technical_support", "problem_diagnosis", "user_assistance"],
+      "approves": ["solution_approaches", "ticket_resolution"]
+    },
+    "escalation": {
+      "receives_from": ["Helpdesk_Technician"],
+      "triggers": ["complex_issue", "unresolved_ticket", "system_failure"]
+    }
+  },
+  "routing": {
+    "receives": ["support_tickets", "technical_issues"],
+    "sends_to": ["System_Admin"]
+  }
+}

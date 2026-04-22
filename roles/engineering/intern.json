@@ -1,0 +1,27 @@
+{
+  "role": "Intern",
+  "department": "Engineering",
+  "level": "Entry",
+  "reportsTo": "Junior Developer",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": [],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["learning", "assisted_tasks", "code_reviews"],
+      "approves": [],
+      "reviews": []
+    },
+    "escalation": {
+      "receives_from": [],
+      "triggers": ["blocker", "clarification_needed", "support_request"]
+    }
+  },
+  "routing": {
+    "receives": ["simple_tasks", "learning_exercises"],
+    "sends_to": ["Junior Developer"]
+  }
+}

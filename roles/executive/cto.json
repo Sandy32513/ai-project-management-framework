@@ -1,0 +1,45 @@
+{
+  "role": "CTO",
+  "department": "Technology",
+  "level": "C-Suite",
+  "reportsTo": "CEO",
+  "authority": "technology",
+  "skills": {
+    "decision_making": {
+      "scope": "technology",
+      "types": ["technical_strategy", "architecture", "tech_stack", "innovation"],
+      "threshold": "medium_high_impact",
+      "escalation_receives": ["major_technical_decisions", "architecture_changes", "vendor_selection"]
+    },
+    "task_handling": {
+      "owns": ["technology_roadmap", "engineering_excellence", "technical_standards", "platform_strategy"],
+      "approves": ["architecture_decisions", "tech_stack_changes", "major_technical_debts", "innovation_initiatives"],
+      "reviews": ["technical_debt_report", "architecture_reviews", "innovation_pipelines"]
+    },
+    "escalation": {
+      "receives_from": ["VP_Engineering", "Director_Engineering", "DevOps_Lead", "Security_Architect"],
+      "triggers": ["critical_system_failure", "major_architecture_change", "security_incident", "technology_budget_overrun"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "hiring_approval": true,
+      "engineering_resources": true,
+      "innovation_budget": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["VP_Engineering", "Director_Engineering", "DevOps_Director", "Security_Architect"],
+    "outgoing": ["CEO"],
+    "emergency": ["immediate_ceo_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["technical", "engineering", "infrastructure", "platform"],
+    "reports": ["weekly_tech_summary", "monthly_architecture_review", "quarterly_innovation_report"],
+    "approvals": ["architecture_changes", "major_tech_investments", "vendor_contracts_tech"]
+  },
+  "automation": {
+    "monitors": ["engineering_metrics", "technical_debt", "system_health", "innovation_pipeline"],
+    "auto_receives": ["deployment_requests", "technical_escalations", "architecture_proposals"],
+    "sign_off_required": ["production_deployment_critical", "architecture_changes", "tech_stack_additions"]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "role": "Junior Engineer",
+  "department": "Engineering",
+  "level": "Individual Contributor",
+  "reportsTo": "Mid_Level_Engineer",
+  "authority": "basic_tasks",
+  "skills": {
+    "decision_making": {
+      "scope": "task_execution",
+      "types": ["task_approach", "time_estimation"],
+      "threshold": "minimal",
+      "escalation_receives": []
+    },
+    "task_handling": {
+      "owns": ["basic_tasks", "learning", "documentation_assistance"],
+      "approves": [],
+      "reviews": []
+    },
+    "escalation": {
+      "receives_from": ["Intern"],
+      "triggers": ["blocker", "clarification_needed", "learning_support"]
+    },
+    "resource_allocation": {
+      "budget_authority": false,
+      "task_execution": true,
+      "learning_time": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Intern"],
+    "outgoing": ["Mid_Level_Engineer"],
+    "emergency": ["mid_level_engineer_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["simple_feature", "bug_fix", "documentation"],
+    "reports": ["task_completion"],
+    "approves": []
+  },
+  "automation": {
+    "monitors": ["task_progress"],
+    "auto_receives": ["task_assignments", "code_review_comments"],
+    "sign_off_required": ["task_completion"]
+  }
+}

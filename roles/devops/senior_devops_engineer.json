@@ -1,0 +1,26 @@
+{
+  "role": "Senior DevOps Engineer",
+  "department": "DevOps",
+  "level": "Execution",
+  "reportsTo": "DevOps_Lead",
+  "authority": "automation_monitoring",
+  "skills": {
+    "decision_making": {
+      "scope": "automation_implementation",
+      "types": ["automation_approach", "monitoring_strategy", "tool_configuration", "scripting"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["automation_pipelines", "monitoring_setup", "infrastructure_scripts", "deployment_scripts"],
+      "approves": ["automation_scripts", "monitoring_config", "deployment_approaches"]
+    },
+    "escalation": {
+      "receives_from": ["DevOps_Engineer"],
+      "triggers": ["automation_failure", "monitoring_alert", "deployment_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["automation_tasks", "monitoring_projects"],
+    "sends_to": ["DevOps_Lead"]
+  }
+}

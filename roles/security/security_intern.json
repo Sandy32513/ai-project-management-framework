@@ -1,0 +1,25 @@
+{
+  "role": "Security Intern",
+  "department": "Security",
+  "level": "Entry",
+  "reportsTo": "Security_Engineer",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": [],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["learning", "security_audits_assistance", "documentation"],
+      "approves": []
+    },
+    "escalation": {
+      "triggers": ["blocker", "clarification_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["simple_tasks", "learning_exercises"],
+    "sends_to": ["Security_Engineer"]
+  }
+}

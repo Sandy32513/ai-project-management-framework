@@ -1,0 +1,26 @@
+{
+  "role": "Security Engineer",
+  "department": "Security",
+  "level": "Execution",
+  "reportsTo": "Security_Architect",
+  "authority": "vulnerability_testing",
+  "skills": {
+    "decision_making": {
+      "scope": "security_testing",
+      "types": ["vulnerability_assessment", "penetration_testing", "security_testing", "fix_recommendations"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["vulnerability_testing", "penetration_tests", "security_scans", "security_recommendations"],
+      "approves": ["test_results", "fix_recommendations"]
+    },
+    "escalation": {
+      "receives_from": ["SOC_Analyst"],
+      "triggers": ["critical_vulnerability", "security_incident", "exploitation_detected"]
+    }
+  },
+  "routing": {
+    "receives": ["security_tests", "vulnerability_assessments"],
+    "sends_to": ["Security_Architect"]
+  }
+}

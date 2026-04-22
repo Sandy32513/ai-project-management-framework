@@ -1,0 +1,26 @@
+{
+  "role": "UX Manager",
+  "department": "Design",
+  "level": "Leadership",
+  "reportsTo": "Design_Director",
+  "authority": "team_coordination",
+  "skills": {
+    "decision_making": {
+      "scope": "design_team",
+      "types": ["team_coordination", "project_allocation", "design_prioritization", "quality_standards"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["team_coordination", "project_allocation", "design_quality", "team_performance"],
+      "approves": ["design_deliverables", "project_priorities", "team_assignments"]
+    },
+    "escalation": {
+      "receives_from": ["UX_Lead", "UI_UX_Designer"],
+      "triggers": ["design_blocker", "timeline_risk", "quality_issue", "stakeholder_feedback"]
+    }
+  },
+  "routing": {
+    "receives": ["design_projects", "design_issues"],
+    "sends_to": ["Design_Director"]
+  }
+}

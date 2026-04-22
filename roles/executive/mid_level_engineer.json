@@ -1,0 +1,43 @@
+{
+  "role": "Mid-Level Engineer",
+  "department": "Engineering",
+  "level": "Individual Contributor",
+  "reportsTo": "Senior_Engineer",
+  "authority": "features",
+  "skills": {
+    "decision_making": {
+      "scope": "feature_implementation",
+      "types": ["implementation_approach", "code_structure", "testing_strategy"],
+      "threshold": "low_impact",
+      "escalation_receives": ["blockers", "clarification_needed", "dependencies"]
+    },
+    "task_handling": {
+      "owns": ["feature_development", "unit_tests", "documentation", "code_maintenance"],
+      "approves": ["implementation_details", "code_structure", "test_coverage"],
+      "reviews": ["junior_code", "documentation"]
+    },
+    "escalation": {
+      "receives_from": ["Junior_Engineer"],
+      "triggers": ["technical_blocker", "requirement_clarification", "dependency_issue"]
+    },
+    "resource_allocation": {
+      "budget_authority": false,
+      "task_execution": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Junior_Engineer"],
+    "outgoing": ["Senior_Engineer"],
+    "emergency": ["senior_engineer_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["feature_development", "bug_fix"],
+    "reports": ["task_completion", "code_submission"],
+    "approves": ["implementation_details"]
+  },
+  "automation": {
+    "monitors": ["task_status", "code_quality"],
+    "auto_receives": ["task_assignments", "code_review_comments"],
+    "sign_off_required": ["feature_completion"]
+  }
+}

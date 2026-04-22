@@ -1,0 +1,26 @@
+{
+  "role": "Data Scientist",
+  "department": "Data",
+  "level": "Execution",
+  "reportsTo": "Data_Architect",
+  "authority": "ml_models",
+  "skills": {
+    "decision_making": {
+      "scope": "ml_development",
+      "types": ["model_selection", "feature_engineering", "model_training", "evaluation_metrics"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["ml_models", "data_analysis", "predictive_analytics", "model_deployment"],
+      "approves": ["model_approaches", "feature_selections", "evaluation_results"]
+    },
+    "escalation": {
+      "receives_from": ["Data_Analyst"],
+      "triggers": ["model_performance_issue", "data_quality_problem", "training_failure"]
+    }
+  },
+  "routing": {
+    "receives": ["ml_projects", "analysis_requests"],
+    "sends_to": ["Data_Architect"]
+  }
+}

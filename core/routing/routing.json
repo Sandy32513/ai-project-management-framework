@@ -1,0 +1,68 @@
+{
+  "routing_engine": {
+    "name": "AI Project Routing Engine",
+    "version": "1.0.0",
+    "description": "Automatic routing of projects to appropriate teams based on skill matching, priority, and authority levels",
+    "example": {
+      "input": {
+        "name": "New Feature",
+        "department": "Engineering",
+        "required_skills": ["javascript", "react"],
+        "priority": "high"
+      },
+      "output": {
+        "assigned": "Tech Lead",
+        "department": "Engineering",
+        "reason": "Best match based on skills and authority level"
+      }
+    }
+  },
+  "strategies": {
+    "primary": {
+      "name": "skill_based",
+      "description": "Routes projects based on required skills matching available roles",
+      "algorithm": "skill_match"
+    },
+    "fallback": {
+      "name": "round_robin",
+      "description": "Falls back to round-robin when skill match is ambiguous",
+      "algorithm": "load_balanced"
+    }
+  },
+  "filters": {
+    "required": [
+      {
+        "filter": "department",
+        "description": "Project department must match role department",
+        "priority": 1
+      },
+      {
+        "filter": "skill_match",
+        "description": "Required skills must match role capabilities",
+        "priority": 2
+      },
+      {
+        "filter": "authority_level",
+        "description": "Role authority must meet project impact threshold",
+        "priority": 3
+      }
+    ],
+    "optional": [
+      {
+        "filter": "current_load",
+        "description": "Consider current task load of role",
+        "priority": 4
+      },
+      {
+        "filter": "availability",
+        "description": "Check role availability and timezone",
+        "priority": 5
+      },
+      {
+        "filter": "expertise_area",
+        "description": "Match specific expertise area",
+        "priority": 6
+      }
+    ]
+  }
+}

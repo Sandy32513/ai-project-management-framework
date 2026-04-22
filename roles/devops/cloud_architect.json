@@ -1,0 +1,27 @@
+{
+  "role": "Cloud Architect",
+  "department": "DevOps",
+  "level": "Technical",
+  "reportsTo": "VP_Director_DevOps",
+  "authority": "cloud_design",
+  "skills": {
+    "cloud_providers": ["AWS", "Azure", "GCP"],
+    "decision_making": {
+      "scope": "cloud_architecture",
+      "types": ["cloud_design", "service_selection", "cost_optimization", "architecture_patterns"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["cloud_architecture", "service_architecture", "cost_optimization", "multi_cloud_strategy"],
+      "approves": ["cloud_designs", "service_selections", "architecture_patterns"]
+    },
+    "escalation": {
+      "receives_from": ["Senior_DevOps_Engineer"],
+      "triggers": ["cost_overrun", "performance_issue", "availability_problem", "security_concern"]
+    }
+  },
+  "routing": {
+    "receives": ["cloud_projects", "architecture_reviews"],
+    "sends_to": ["VP_Director_DevOps"]
+  }
+}

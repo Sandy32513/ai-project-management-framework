@@ -1,0 +1,27 @@
+{
+  "role": "Frontend Developer",
+  "specialization": "Frontend",
+  "department": "Engineering",
+  "level": "Development",
+  "reportsTo": "Tech_Lead",
+  "authority": "ui_implementation",
+  "skills": {
+    "technologies": ["React", "Vue", "Angular", "JavaScript", "TypeScript", "HTML", "CSS"],
+    "decision_making": {
+      "scope": "frontend_implementation",
+      "types": ["ui_approach", "component_design", "state_management", "performance_optimization"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["ui_development", "component_libraries", "responsive_design", "user_interface_optimization"],
+      "approves": ["ui_approaches", "component_designs", "css_architecture"]
+    },
+    "escalation": {
+      "triggers": ["browser_compatibility_issue", "performance_problem", "framework_version_change"]
+    }
+  },
+  "routing": {
+    "receives": ["ui_tasks", "frontend_projects"],
+    "sends_to": ["Tech_Lead"]
+  }
+}

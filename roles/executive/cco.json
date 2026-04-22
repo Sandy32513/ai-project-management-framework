@@ -1,0 +1,44 @@
+{
+  "role": "CCO",
+  "department": "Commercial",
+  "level": "C-Suite",
+  "reportsTo": "CEO",
+  "authority": "commercial",
+  "skills": {
+    "decision_making": {
+      "scope": "commercial",
+      "types": ["revenue_strategy", "sales_strategy", "partnerships", "pricing"],
+      "threshold": "high_impact",
+      "escalation_receives": ["major_sales_deals", "partnership_proposals", "pricing_changes"]
+    },
+    "task_handling": {
+      "owns": ["revenue_strategy", "sales_enablement", "partnerships", "commercial_operations"],
+      "approves": ["sales_targets", "pricing_models", "partner_contracts", "commercial_budget"],
+      "reviews": ["sales_performance", "pipeline_health", "partner_relationships"]
+    },
+    "escalation": {
+      "receives_from": ["VP_Sales", "VP_Marketing", "Partnership_Manager"],
+      "triggers": ["major_deal_blocker", "pipeline_drop", "partner_issue", "revenue_shortfall"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "sales_resources": true,
+      "marketing_budget": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["VP_Sales", "VP_Marketing"],
+    "outgoing": ["CEO"],
+    "emergency": ["immediate_ceo_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["sales", "marketing", "partnerships"],
+    "reports": ["weekly_sales_summary", "monthly_commercial_report"],
+    "approvals": ["major_deals", "partnership_contracts", "pricing_changes"]
+  },
+  "automation": {
+    "monitors": ["sales_pipeline", "revenue_kpis", "marketing_roi"],
+    "auto_receives": ["deal_escalations", "pipeline_alerts", "revenue_reports"],
+    "sign_off_required": ["major_deals", "partnership_contracts", "pricing_models"]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "role": "Customer Success Manager",
+  "department": "Customer Success",
+  "level": "Management",
+  "reportsTo": "CCO",
+  "authority": "customer_retention",
+  "skills": {
+    "decision_making": {
+      "scope": "customer_success",
+      "types": ["customer_health", "retention_strategy", "escalation_resolution", "renewal_planning"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["customer_relationships", "retention", "renewals", "customer_health"],
+      "approves": ["renewal_terms", "customer_concessions", "escalation_resolutions"]
+    },
+    "escalation": {
+      "receives_from": ["Support_Specialist"],
+      "triggers": ["customer_complaint", "churn_risk", "major_support_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["customer_issues", "renewal_requests"],
+    "sends_to": ["CCO"]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "role": "Principal Engineer",
+  "department": "Engineering",
+  "level": "Technical",
+  "reportsTo": "VP_Engineering",
+  "authority": "system_design",
+  "skills": {
+    "decision_making": {
+      "scope": "system_architecture",
+      "types": ["system_design", "architecture_decisions", "performance_optimization", "technical_strategy"],
+      "threshold": "medium_high_impact"
+    },
+    "task_handling": {
+      "owns": ["system_architecture", "technical_strategy", "cross_team_technical_alignment", "technicalStandards"],
+      "approves": ["architecture_designs", "technical_standards", "design_patterns", "performance_requirements"]
+    },
+    "escalation": {
+      "receives_from": ["Tech_Lead", "Senior_Developer"],
+      "triggers": ["complex_architecture_challenge", "performance_crisis", "technology_evaluation"]
+    }
+  },
+  "routing": {
+    "receives": ["architecture_proposals", "technical_strategy_requests", "complex_design_reviews"],
+    "sends_to": ["VP_Engineering", "CTO"]
+  }
+}

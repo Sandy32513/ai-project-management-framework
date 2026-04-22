@@ -1,0 +1,28 @@
+{
+  "role": "QA Lead",
+  "department": "QA",
+  "level": "Technical",
+  "reportsTo": "QA Director",
+  "authority": "test_planning",
+  "skills": {
+    "technical": ["test_planning", "test_automation", "defect_tracking", "test_frameworks", "selenium", "cypress"],
+    "soft": ["leadership", "communication", "analytical_thinking", "detail_oriented"],
+    "decision_making": {
+      "scope": "test_planning",
+      "types": ["test_strategy", "test_prioritization", "defect_severity", "test_approach"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["test_planning", "defect_tracking", "test_coordination", "quality_reports"],
+      "approves": ["test_plans", "test_cases", "defect_severity", "release_recommendations"]
+    },
+    "escalation": {
+      "receives_from": ["Senior QA Engineer", "QA Engineer"],
+      "triggers": ["critical_bug", "test_blocker", "coverage_gap", "timeline_risk"]
+    }
+  },
+  "routing": {
+    "receives": ["test_plans", "defect_reports", "quality_metrics"],
+    "sends_to": ["QA Director"]
+  }
+}

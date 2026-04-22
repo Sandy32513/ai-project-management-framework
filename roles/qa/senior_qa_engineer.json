@@ -1,0 +1,26 @@
+{
+  "role": "Senior QA Engineer",
+  "department": "QA",
+  "level": "Execution",
+  "reportsTo": "QA_Lead",
+  "authority": "complex_testing",
+  "skills": {
+    "decision_making": {
+      "scope": "complex_testing",
+      "types": ["test_approach", "test_data", "test_environment", "automation_strategy"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["complex_testing", "test_automation", "regression_testing", "test_data_preparation"],
+      "approves": ["test_cases", "test_approaches", "automation_scripts"]
+    },
+    "escalation": {
+      "receives_from": ["QA_Engineer"],
+      "triggers": ["complex_bug", "flaky_test", "environment_issue", "automation_failure"]
+    }
+  },
+  "routing": {
+    "receives": ["complex_test_tasks", "automation_projects"],
+    "sends_to": ["QA_Lead"]
+  }
+}

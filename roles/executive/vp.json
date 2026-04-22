@@ -1,0 +1,44 @@
+{
+  "role": "VP",
+  "department": "Department_Varies",
+  "level": "Senior Leadership",
+  "reportsTo": "C-Suite",
+  "authority": "department",
+  "skills": {
+    "decision_making": {
+      "scope": "department",
+      "types": ["department_strategy", "resource_allocation", "team_performance", "priority_alignment"],
+      "threshold": "medium_impact",
+      "escalation_receives": ["strategic_initiatives", "budget_requests", "team_conflicts"]
+    },
+    "task_handling": {
+      "owns": ["department_strategy", "team_performance", "budget_management", "stakeholder_relations"],
+      "approves": ["team_budget", "department_priorities", "hiring_requests", "project_approvals"],
+      "reviews": ["team_performance", "project_delivery", "resource_utilization", "department_metrics"]
+    },
+    "escalation": {
+      "receives_from": ["Director", "Senior_Manager", "Manager"],
+      "triggers": ["budget_overrun", "timeline_delay", "team_conflict", "resource_shortage"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "department_resources": true,
+      "hiring_approval": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Director", "Senior_Manager"],
+    "outgoing": ["Relevant_C-Suite"],
+    "emergency": ["c_suite_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["department_level", "cross_team"],
+    "reports": ["weekly_department_summary", "monthly_performance_report"],
+    "approvals": ["project_approvals", "budget_requests", "hiring_requests"]
+  },
+  "automation": {
+    "monitors": ["team_performance", "project_status", "budget_spending"],
+    "auto_receives": ["escalations", "budget_alerts", "performance_reports"],
+    "sign_off_required": ["department_projects", "budget_allocations"]
+  }
+}

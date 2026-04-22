@@ -1,0 +1,45 @@
+{
+  "role": "CEO",
+  "department": "Executive",
+  "level": "C-Suite",
+  "reportsTo": null,
+  "authority": "company_wide",
+  "skills": {
+    "decision_making": {
+      "scope": "company_wide",
+      "types": ["strategic", "budget", "hiring", "acquisition", "partnership"],
+      "threshold": "high_impact",
+      "escalation_receives": ["major_decisions", "crisis_management", "board_matters"]
+    },
+    "task_handling": {
+      "owns": ["company_vision", "strategy_approval", "major_policies", "stakeholder_comms"],
+      "approves": ["annual_budget", "strategic_initiatives", "executive_hires", "mergers"],
+      "reviews": ["monthly_reports", "quarterly_results", "risk_assessments"]
+    },
+    "escalation": {
+      "receives_from": ["all_c_suite", "board", "major_stakeholders"],
+      "triggers": ["crisis", "major_budget_change", "legal_matters", "strategic_pivot"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "hiring_approval": true,
+      "strategic_initiatives": true,
+      "cross_department": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["CTO", "CFO", "COO", "CCO", "CIO", "CISO"],
+    "outgoing": ["Board", "Stakeholders"],
+    "emergency": ["immediate_board_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["strategic", "company_wide", "high_budget"],
+    "reports": ["monthly_executive_summary", "quarterly_board_report", "annual_audit"],
+    "approvals": ["budget_over_1M", "major_hiring", "strategic_partnerships"]
+  },
+  "automation": {
+    "monitors": ["company_kpis", "board_reports", "strategic_initiatives"],
+    "auto_receives": ["final_deployment_approval", "audit_reports", "risk_alerts"],
+    "sign_off_required": ["production_deployment", "quarterly_reports", "annual_audit"]
+  }
+}

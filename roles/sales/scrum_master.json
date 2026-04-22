@@ -1,0 +1,26 @@
+{
+  "role": "Scrum Master",
+  "department": "Cross-Functional",
+  "level": "Facilitation",
+  "reportsTo": "Engineering_Manager",
+  "authority": "agile_facilitation",
+  "skills": {
+    "decision_making": {
+      "scope": "agile_process",
+      "types": ["sprint_facilitation", "process_improvement", "blocker_removal", "ceremony_planning"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["sprint_ceremonies", "process_facilitation", " impediment_removal", "team_coaching"],
+      "approves": ["sprint_planning", "retrospective_actions"]
+    },
+    "escalation": {
+      "receives_from": ["Development_Team"],
+      "triggers": ["blocker_escalation", "process_issue", "stakeholder_conflict"]
+    }
+  },
+  "routing": {
+    "receives": ["process_issues", "facilitation_requests"],
+    "sends_to": ["Engineering_Manager"]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "role": "UX Lead",
+  "department": "Design",
+  "level": "Technical",
+  "reportsTo": "UX_Manager",
+  "authority": "user_journey_design",
+  "skills": {
+    "decision_making": {
+      "scope": "user_experience",
+      "types": ["user_journey_design", "ux_patterns", "usability_decisions", "research_direction"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["user_journey_design", "ux_patterns", "usability_testing", "research_planning"],
+      "approves": ["ux_designs", "user_research", "design_patterns"]
+    },
+    "escalation": {
+      "receives_from": ["UI_UX_Designer", "Visual_Designer"],
+      "triggers": ["design_conflict", "usability_issue", "research_findings"]
+    }
+  },
+  "routing": {
+    "receives": ["ux_projects", "research_requests"],
+    "sends_to": ["UX_Manager"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "role": "Data Intern",
+  "department": "Data",
+  "level": "Entry",
+  "reportsTo": "Data_Analyst",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": [],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["learning", "data_cleaning", "documentation"],
+      "approves": []
+    },
+    "escalation": {
+      "triggers": ["blocker", "clarification_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["simple_tasks", "data_cleaning"],
+    "sends_to": ["Data_Analyst"]
+  }
+}

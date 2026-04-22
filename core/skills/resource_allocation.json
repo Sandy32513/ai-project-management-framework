@@ -1,0 +1,154 @@
+{
+  "resource_allocation": {
+    "name": "AI Resource Allocation System",
+    "version": "1.0.0",
+    "description": "Dynamic resource distribution based on project needs, priority, and availability"
+  },
+  "algorithms": {
+    "primary": {
+      "name": "priority_weighted",
+      "description": "Allocate resources based on project priority and strategic importance"
+    },
+    "fallback": [
+      {
+        "name": "skill_matched",
+        "description": "Allocate to roles with matching skills"
+      },
+      {
+        "name": "load_balanced",
+        "description": "Distribute evenly across available resources"
+      },
+      {
+        "name": "cost_optimized",
+        "description": "Optimize for budget constraints"
+      }
+    ]
+  },
+  "constraints": {
+    "max_concurrent_tasks": {
+      "intern": 1,
+      "junior": 2,
+      "mid_level": 3,
+      "senior": 4,
+      "lead": 5,
+      "manager": 6,
+      "director": 8,
+      "vp": 10,
+      "c_suite": 15
+    },
+    "budget_limits": {
+      "by_department": true,
+      "by_role": true,
+      "by_project": true
+    },
+    "availability_check": {
+      "enabled": true,
+      "check_frequency": "1h",
+      "rebalance_threshold": "80%_capacity"
+    }
+  },
+  "allocation_types": {
+    "human_resources": {
+      "description": "Team member allocation to projects",
+      "criteria": [
+        "skill_match",
+        "availability",
+        "current_load",
+        "experience_level",
+        "timezone"
+      ],
+      "reallocation_triggers": [
+        "project_priority_change",
+        "team_member_unavailable",
+        "scope_change",
+        "timeline_adjustment"
+      ]
+    },
+    "budget_resources": {
+      "description": "Financial resource allocation",
+      "criteria": [
+        "project_priority",
+        "strategic_importance",
+        "budget_remaining",
+        "roi_projection"
+      ],
+      "allocation_methods": [
+        "fixed_budget",
+        "milestone_based",
+        "time_and_materials"
+      ]
+    },
+    "infrastructure_resources": {
+      "description": "Cloud, hardware, and tool allocation",
+      "criteria": [
+        "project_requirements",
+        "cost_optimization",
+        "availability",
+        "security_requirements"
+      ]
+    }
+  },
+  "resource_pools": {
+    "engineering": {
+      "roles": ["Principal Engineer", "Senior Engineer", "Mid-Level Engineer", "Junior Engineer", "Intern"],
+      "allocation_model": "team_based",
+      "min_team_size": 3,
+      "max_team_size": 10
+    },
+    "design": {
+      "roles": ["Design Director", "UX Lead", "UI/UX Designer", "Visual Designer", "Design Intern"],
+      "allocation_model": "project_based",
+      "ratio": "1_designer_per_3_engineers"
+    },
+    "qa": {
+      "roles": ["QA Director", "QA Lead", "Senior QA Engineer", "QA Engineer", "QA Intern"],
+      "allocation_model": "embedded",
+      "ratio": "1_qa_per_4_engineers"
+    },
+    "devops": {
+      "roles": ["VP DevOps", "DevOps Lead", "Senior DevOps Engineer", "DevOps Engineer", "Intern"],
+      "allocation_model": "shared_service",
+      "availability": "24/7"
+    }
+  },
+  "dynamic_rebalancing": {
+    "enabled": true,
+    "triggers": [
+      {
+        "trigger": "resource_utilization_above_90%",
+        "action": "rebalance_load"
+      },
+      {
+        "trigger": "project_blocked",
+        "action": "reallocate_resources"
+      },
+      {
+        "trigger": "priority_escalation",
+        "action": "prioritize_resources"
+      },
+      {
+        "trigger": "team_member_unavailable",
+        "action": "backup_assignment"
+      }
+    ],
+    "frequency": "daily"
+  },
+  "allocation_workflow": {
+    "project_start": [
+      { "step": 1, "action": "assess_requirements", "description": "Determine resource needs" },
+      { "step": 2, "action": "check_availability", "description": "Check resource pools" },
+      { "step": 3, "action": "match_skills", "description": "Match to available resources" },
+      { "step": 4, "action": "allocate", "description": "Assign resources to project" }
+    ],
+    "project_ongoing": [
+      { "step": 1, "action": "monitor_utilization", "description": "Track resource usage" },
+      { "step": 2, "action": "check_blockers", "description": "Identify resource issues" },
+      { "step": 3, "action": "rebalance_if_needed", "description": "Dynamically reallocate" }
+    ],
+    "project_completion": [
+      { "step": 1, "action": "release_resources", "description": "Return to pool" },
+      { "step": 2, "action": "update_availability", "description": "Mark as available" },
+      { "step": 3, "action": "utilization_report", "description": "Record allocation metrics" }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "role": "Design Director",
+  "department": "Design",
+  "level": "Leadership",
+  "reportsTo": "CEO",
+  "authority": "design_strategy",
+  "skills": {
+    "decision_making": {
+      "scope": "design_strategy",
+      "types": ["design_strategy", "brand_direction", "design_standards", "team_vision"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["design_strategy", "brand_direction", "design_standards", "team_growth"],
+      "approves": ["design_direction", "brand_changes", "design_standards", "hiring"]
+    },
+    "escalation": {
+      "receives_from": ["UX_Manager", "Design_Lead"],
+      "triggers": ["brand_crisis", "design_direction_conflict", "major_design_change"]
+    }
+  },
+  "routing": {
+    "receives": ["design_initiatives", "brand_requests"],
+    "sends_to": ["CEO"]
+  }
+}

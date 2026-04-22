@@ -1,0 +1,26 @@
+{
+  "role": "QA Engineer",
+  "department": "QA",
+  "level": "Execution",
+  "reportsTo": "Senior_QA_Engineer",
+  "authority": "manual_testing",
+  "skills": {
+    "decision_making": {
+      "scope": "task_level",
+      "types": ["test_execution", "bug_reporting"],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["manual_testing", "bug_reporting", "test_case_execution", "regression_testing"],
+      "approves": ["test_results"]
+    },
+    "escalation": {
+      "receives_from": ["QA_Intern"],
+      "triggers": ["unclear_requirement", "environment_issue", "test_data_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["test_cases", "testing_tasks"],
+    "sends_to": ["Senior_QA_Engineer"]
+  }
+}

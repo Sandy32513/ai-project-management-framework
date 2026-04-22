@@ -1,0 +1,28 @@
+{
+  "role": "Director Engineering",
+  "department": "Engineering",
+  "level": "Engineering Leadership",
+  "reportsTo": "VP Engineering",
+  "authority": "delivery_multi_squad",
+  "skills": {
+    "technical": ["system_architecture", "delivery_management", "cross_team_coordination", "strategic_planning"],
+    "soft": ["leadership", "stakeholder_management", "conflict_resolution", "strategic_thinking"],
+    "decision_making": {
+      "scope": "multiple_squads",
+      "types": ["delivery_strategy", "resource_allocation", "cross_team_prioritization", "squad_planning"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["delivery_across_squads", "cross_team_alignment", "resource_planning", "stakeholder_management"],
+      "approves": ["squad_priorities", "resource_transfers", "timeline_changes", "budget_allocation"]
+    },
+    "escalation": {
+      "receives_from": ["Engineering Manager", "Tech Lead"],
+      "triggers": ["delivery_delay", "budget_overrun", "team_conflict", "stakeholder_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["cross_squad_projects", "delivery_issues", "resource_requests"],
+    "sends_to": ["VP Engineering"]
+  }
+}

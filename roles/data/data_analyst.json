@@ -1,0 +1,26 @@
+{
+  "role": "Data Analyst",
+  "department": "Data",
+  "level": "Execution",
+  "reportsTo": "Data_Scientist",
+  "authority": "reports_insights",
+  "skills": {
+    "decision_making": {
+      "scope": "data_analysis",
+      "types": ["data_analysis", "report_creation", "metric_definition", "insight_generation"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["reports", "dashboards", "data_queries", "metric_calculation"],
+      "approves": ["report_approaches", "analysis_methodology"]
+    },
+    "escalation": {
+      "receives_from": ["Data_Intern"],
+      "triggers": ["data_quality_issue", "complex_query_needed", "report_feedback"]
+    }
+  },
+  "routing": {
+    "receives": ["analysis_requests", "report_tasks"],
+    "sends_to": ["Data_Scientist"]
+  }
+}

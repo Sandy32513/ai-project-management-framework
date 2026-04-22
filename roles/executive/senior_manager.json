@@ -1,0 +1,44 @@
+{
+  "role": "Senior Manager",
+  "department": "Department_Varies",
+  "level": "Senior Leadership",
+  "reportsTo": "Director",
+  "authority": "team_group",
+  "skills": {
+    "decision_making": {
+      "scope": "team_group",
+      "types": ["delivery_strategy", "prioritization", "team_performance", "stakeholder_management"],
+      "threshold": "low_medium_impact",
+      "escalation_receives": ["team_issues", "delivery_risks", "stakeholder_concerns"]
+    },
+    "task_handling": {
+      "owns": ["team_delivery", "stakeholder_relations", "performance_management", "alignment"],
+      "approves": ["sprint_priorities", "resource_allocation", "timeline_adjustments", "team_requests"],
+      "reviews": ["sprint_delivery", "team_performance", "stakeholder_feedback"]
+    },
+    "escalation": {
+      "receives_from": ["Manager", "Team Lead"],
+      "triggers": ["delivery_delay", "team_issue", "stakeholder_complaint", "budget_concern"]
+    },
+    "resource_allocation": {
+      "budget_authority": false,
+      "team_resources": true,
+      "task_allocation": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Manager", "Team Lead"],
+    "outgoing": ["Director"],
+    "emergency": ["director_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["team_level", "sprint_related"],
+    "reports": ["sprint_summary", "weekly_team_report"],
+    "approves": ["sprint_planning", "priority_changes"]
+  },
+  "automation": {
+    "monitors": ["sprint_progress", "team_velocity", "blockers"],
+    "auto_receives": ["blocker_alerts", "sprint_escalations"],
+    "sign_off_required": ["sprint_approvals"]
+  }
+}

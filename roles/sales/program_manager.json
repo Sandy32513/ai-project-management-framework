@@ -1,0 +1,26 @@
+{
+  "role": "Program Manager",
+  "department": "Cross-Functional",
+  "level": "Management",
+  "reportsTo": "VP",
+  "authority": "multi_team_coordination",
+  "skills": {
+    "decision_making": {
+      "scope": "program_level",
+      "types": ["program_planning", "dependency_management", "risk_management", "resource_coordination"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["multi_team_coordination", "program_roadmap", "dependency_tracking", "risk_management"],
+      "approves": ["program_timeline", "resource_allocation", "dependency_resolution"]
+    },
+    "escalation": {
+      "receives_from": ["Product Managers", "Team Leads"],
+      "triggers": ["cross_team_blocker", "resource_conflict", "timeline_risk", "budget_overrun"]
+    }
+  },
+  "routing": {
+    "receives": ["program_initiatives", "cross_team_issues"],
+    "sends_to": ["VP"]
+  }
+}

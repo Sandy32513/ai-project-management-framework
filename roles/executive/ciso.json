@@ -1,0 +1,44 @@
+{
+  "role": "CISO",
+  "department": "Security",
+  "level": "C-Suite",
+  "reportsTo": "CEO",
+  "authority": "security",
+  "skills": {
+    "decision_making": {
+      "scope": "security",
+      "types": ["security_strategy", "risk_management", "compliance", "incident_response"],
+      "threshold": "high_impact",
+      "escalation_receives": ["security_incidents", "risk_assessments", "compliance_issues"]
+    },
+    "task_handling": {
+      "owns": ["security_strategy", "risk_management", "compliance", "incident_response"],
+      "approves": ["security_policies", "risk_treatments", "security_budget", "vendor_security_assessments"],
+      "reviews": ["security_metrics", "penetration_tests", "compliance_audits", "incident_reports"]
+    },
+    "escalation": {
+      "receives_from": ["Security Director", "Security Architect", "SOC Analyst"],
+      "triggers": ["security_incident", "data_breach", "compliance_violation", "critical_vulnerability"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "security_resources": true,
+      "security_tools": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Security Director", "Security Architect", "SOC Analyst"],
+    "outgoing": ["CEO"],
+    "emergency": ["immediate_ceo_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["security", "compliance", "risk"],
+    "reports": ["weekly_security_summary", "monthly_risk_report", "quarterly_compliance_report"],
+    "approvals": ["security_policies", "major_security_tools", "risk_acceptances"]
+  },
+  "automation": {
+    "monitors": ["security_alerts", "vulnerability_scans", "compliance_status"],
+    "auto_receives": ["security_incidents", "vulnerability_reports", "compliance_alerts"],
+    "sign_off_required": ["production_deployment_security", "security_policies", "risk_acceptances"]
+  }
+}

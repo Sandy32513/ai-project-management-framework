@@ -1,0 +1,45 @@
+{
+  "role": "Intern",
+  "department": "Department_Varies",
+  "level": "Individual Contributor",
+  "reportsTo": "Junior_Engineer/Mid_Level_Engineer",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": ["task_approach"],
+      "threshold": "minimal",
+      "escalation_receives": []
+    },
+    "task_handling": {
+      "owns": ["learning", "assisted_tasks", "research"],
+      "approves": [],
+      "reviews": []
+    },
+    "escalation": {
+      "receives_from": [],
+      "triggers": ["blocker", "clarification_needed", "learning_support"]
+    },
+    "resource_allocation": {
+      "budget_authority": false,
+      "task_execution": true,
+      "learning_time": true,
+      "mentoring_required": true
+    }
+  },
+  "escalation_path": {
+    "incoming": [],
+    "outgoing": ["Mentor (Junior/Mid-Level Engineer)"],
+    "emergency": ["mentor_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["simple_task", "learning_exercise", "research"],
+    "reports": ["daily_learning_report"],
+    "approves": []
+  },
+  "automation": {
+    "monitors": ["task_progress", "learning_goals"],
+    "auto_receives": ["task_assignments", "learning_materials"],
+    "sign_off_required": ["task_completion_with_mentor_approval"]
+  }
+}

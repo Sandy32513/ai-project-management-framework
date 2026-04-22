@@ -1,0 +1,25 @@
+{
+  "role": "Business Analyst",
+  "department": "Cross-Functional",
+  "level": "Analysis",
+  "reportsTo": "Product_Manager",
+  "authority": "requirement_translation",
+  "skills": {
+    "decision_making": {
+      "scope": "requirement_analysis",
+      "types": ["requirement_analysis", "process_mapping", "stakeholder_interview", "gap_analysis"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["requirement_translation", "process_analysis", "stakeholder_communication", "documentation"],
+      "approves": ["requirement_documents", "process_designs"]
+    },
+    "escalation": {
+      "triggers": ["requirement_conflict", "stakeholder_misalignment", "scope_creep"]
+    }
+  },
+  "routing": {
+    "receives": ["analysis_requests", "requirement_documents"],
+    "sends_to": ["Product_Manager"]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "role": "Marketing Manager",
+  "department": "Marketing",
+  "level": "Leadership",
+  "reportsTo": "CCO",
+  "authority": "marketing_strategy",
+  "skills": {
+    "decision_making": {
+      "scope": "marketing_strategy",
+      "types": ["marketing_strategy", "campaign_planning", "budget_allocation", "channel_selection"],
+      "threshold": "medium_impact"
+    },
+    "task_handling": {
+      "owns": ["marketing_strategy", "campaign_management", "brand_awareness", "lead_generation"],
+      "approves": ["marketing_budget", "campaign_creative", "channel_strategy"]
+    },
+    "escalation": {
+      "receives_from": ["SEO_Specialist", "Marketing_Coordinator"],
+      "triggers": ["campaign_underperformance", "budget_overrun", "brand_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["marketing_initiatives", "campaign_requests"],
+    "sends_to": ["CCO"]
+  }
+}

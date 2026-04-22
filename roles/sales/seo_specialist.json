@@ -1,0 +1,25 @@
+{
+  "role": "SEO Specialist",
+  "department": "Marketing",
+  "level": "Execution",
+  "reportsTo": "Marketing_Manager",
+  "authority": "seo_optimization",
+  "skills": {
+    "decision_making": {
+      "scope": "seo_strategy",
+      "types": ["keyword_strategy", "content_optimization", "link_building", "technical_seo"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["seo_optimization", "keyword_research", "content_analysis", "performance_reporting"],
+      "approves": ["seo_recommendations", "content_changes"]
+    },
+    "escalation": {
+      "triggers": ["ranking_drop", "algorithm_change", "technical_issue"]
+    }
+  },
+  "routing": {
+    "receives": ["seo_tasks", "content_optimization_requests"],
+    "sends_to": ["Marketing_Manager"]
+  }
+}

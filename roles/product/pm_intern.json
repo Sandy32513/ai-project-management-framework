@@ -1,0 +1,25 @@
+{
+  "role": "PM Intern",
+  "department": "Product",
+  "level": "Entry",
+  "reportsTo": "Associate_PM",
+  "authority": "learning",
+  "skills": {
+    "decision_making": {
+      "scope": "minimal",
+      "types": [],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["learning", "market_research", "documentation_assistance"],
+      "approves": []
+    },
+    "escalation": {
+      "triggers": ["blocker", "clarification_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["simple_research_tasks", "documentation"],
+    "sends_to": ["Associate_PM"]
+  }
+}

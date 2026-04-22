@@ -1,0 +1,44 @@
+{
+  "role": "Principal Engineer",
+  "department": "Engineering",
+  "level": "Individual Contributor",
+  "reportsTo": "CTO",
+  "authority": "architecture",
+  "skills": {
+    "decision_making": {
+      "scope": "system_architecture",
+      "types": ["system_design", "architecture_decisions", "technical_strategy", "performance_optimization"],
+      "threshold": "medium_high_impact",
+      "escalation_receives": ["complex_technical_challenges", "architectural_tradeoffs", "performance_issues"]
+    },
+    "task_handling": {
+      "owns": ["system_architecture", "technical_strategy", "design_patterns", "cross_team_technical_alignment"],
+      "approves": ["architecture_designs", "technical_standards", "design_patterns", "performance_requirements"],
+      "reviews": ["architecture_designs", "technical_proposals", "system_designs"]
+    },
+    "escalation": {
+      "receives_from": ["Senior_Engineer", "Tech_Lead"],
+      "triggers": ["complex_architecture_challenge", "performance_crisis", "design_conflict", "technology_evaluation"]
+    },
+    "resource_allocation": {
+      "budget_authority": false,
+      "technical_guidance": true,
+      "architecture_resources": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["Senior_Engineer", "Tech_Lead"],
+    "outgoing": ["CTO"],
+    "emergency": ["cto_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["architecture", "system_design", "technical_strategy"],
+    "reports": ["architecture_review", "technical_strategy_report"],
+    "approves": ["architecture_designs", "technical_standards"]
+  },
+  "automation": {
+    "monitors": ["architecture_health", "system_performance", "technical_debt"],
+    "auto_receives": ["architecture_proposals", "technical_escalations"],
+    "sign_off_required": ["architecture_designs", "major_technical_decisions"]
+  }
+}

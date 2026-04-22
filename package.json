@@ -1,0 +1,24 @@
+{
+  "name": "ai-project-management-framework",
+  "version": "1.0.0",
+  "description": "AI-driven autonomous project management framework with routing, escalation, decision-making, and resource allocation",
+  "main": "src/core/index.js",
+  "scripts": {
+    "test": "node test.js",
+    "init": "node -e \"const framework = require('./src/core'); framework.init();\"",
+    "validate": "node -e \"const framework = require('./src/core'); framework.init(); console.log(framework.validate());\""
+  },
+  "keywords": [
+    "ai",
+    "project-management",
+    "autonomous",
+    "routing",
+    "escalation",
+    "framework"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

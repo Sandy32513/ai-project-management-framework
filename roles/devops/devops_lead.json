@@ -1,0 +1,26 @@
+{
+  "role": "DevOps Lead",
+  "department": "DevOps",
+  "level": "Technical",
+  "reportsTo": "DevOps_Manager",
+  "authority": "pipeline_architecture",
+  "skills": {
+    "decision_making": {
+      "scope": "pipeline_design",
+      "types": ["pipeline_architecture", "deployment_strategy", "infrastructure_design", "tool_selection"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["pipeline_architecture", "deployment_strategy", "infrastructure_code", "automation"],
+      "approves": ["pipeline_designs", "deployment_approaches", "infrastructure_changes"]
+    },
+    "escalation": {
+      "receives_from": ["Senior_DevOps_Engineer", "DevOps_Engineer"],
+      "triggers": ["pipeline_failure", "deployment_issue", "infrastructure_problem"]
+    }
+  },
+  "routing": {
+    "receives": ["pipeline_projects", "infrastructure_requests"],
+    "sends_to": ["DevOps_Manager"]
+  }
+}

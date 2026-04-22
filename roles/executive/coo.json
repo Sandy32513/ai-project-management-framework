@@ -1,0 +1,44 @@
+{
+  "role": "COO",
+  "department": "Operations",
+  "level": "C-Suite",
+  "reportsTo": "CEO",
+  "authority": "operations",
+  "skills": {
+    "decision_making": {
+      "scope": "operations",
+      "types": ["process_optimization", "operational_efficiency", "vendor_management", "supply_chain"],
+      "threshold": "medium_high_impact",
+      "escalation_receives": ["major_operational_decisions", "process_changes", "vendor_issues"]
+    },
+    "task_handling": {
+      "owns": ["day_to_day_operations", "process_excellence", "vendor_relations", "operational_metrics"],
+      "approves": ["process_changes", "vendor_contracts", "operational_budget", "efficiency_initiatives"],
+      "reviews": ["operational_kpis", "process_audits", "vendor_performance"]
+    },
+    "escalation": {
+      "receives_from": ["VP_Operations", "Director_Operations", "Ops_Manager"],
+      "triggers": ["major_operational_failure", "vendor_crisis", "process_breakdown", "efficiency_drop"]
+    },
+    "resource_allocation": {
+      "budget_authority": true,
+      "operational_resources": true,
+      "vendor_management": true
+    }
+  },
+  "escalation_path": {
+    "incoming": ["VP_Operations", "Director_Operations"],
+    "outgoing": ["CEO"],
+    "emergency": ["immediate_ceo_alert"]
+  },
+  "routing_receives": {
+    "project_types": ["operations", "process_improvement"],
+    "reports": ["weekly_ops_summary", "monthly_operational_report"],
+    "approvals": ["major_process_changes", "vendor_contracts_ops"]
+  },
+  "automation": {
+    "monitors": ["operational_kpis", "vendor_performance", "process_metrics"],
+    "auto_receives": ["operational_escalations", "vendor_alerts"],
+    "sign_off_required": ["major_process_changes", "vendor_contracts"]
+  }
+}

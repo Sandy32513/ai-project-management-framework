@@ -1,0 +1,26 @@
+{
+  "role": "System Admin",
+  "department": "IT Support",
+  "level": "Technical",
+  "reportsTo": "IT_Manager",
+  "authority": "servers_networks",
+  "skills": {
+    "decision_making": {
+      "scope": "infrastructure",
+      "types": ["server_management", "network_configuration", "backup_strategy", "access_control"],
+      "threshold": "low_medium_impact"
+    },
+    "task_handling": {
+      "owns": ["server_management", "network_admin", "backup_operations", "access_management"],
+      "approves": ["server_changes", "network_changes", "access_requests"]
+    },
+    "escalation": {
+      "receives_from": ["IT_Support_Engineer", "Helpdesk_Technician"],
+      "triggers": ["server_failure", "network_outage", "security_issue", "performance_degradation"]
+    }
+  },
+  "routing": {
+    "receives": ["infrastructure_tasks", "server_requests"],
+    "sends_to": ["IT_Manager"]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "role": "UI/UX Designer",
+  "department": "Design",
+  "level": "Execution",
+  "reportsTo": "UX_Lead",
+  "authority": "wireframes_ui_design",
+  "skills": {
+    "decision_making": {
+      "scope": "design_execution",
+      "types": ["wireframe_creation", "ui_design", "design_iteration", "prototype_design"],
+      "threshold": "low_impact"
+    },
+    "task_handling": {
+      "owns": ["wireframes", "ui_design", "prototypes", "design_specs"],
+      "approves": ["design_details", "component_designs"]
+    },
+    "escalation": {
+      "receives_from": ["Design_Intern"],
+      "triggers": ["design_feedback", "requirement_change", "stakeholder_input"]
+    }
+  },
+  "routing": {
+    "receives": ["design_tasks", "wireframe_requests"],
+    "sends_to": ["UX_Lead"]
+  }
+}

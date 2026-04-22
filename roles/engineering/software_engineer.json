@@ -1,0 +1,27 @@
+{
+  "role": "Software Engineer",
+  "department": "Engineering",
+  "level": "Development",
+  "reportsTo": "Senior Developer",
+  "authority": "feature_implementation",
+  "skills": {
+    "decision_making": {
+      "scope": "task_level",
+      "types": ["implementation_approach", "code_structure"],
+      "threshold": "minimal"
+    },
+    "task_handling": {
+      "owns": ["feature_implementation", "unit_tests", "documentation"],
+      "approves": ["implementation_details"],
+      "reviews": ["junior_code"]
+    },
+    "escalation": {
+      "receives_from": ["Junior Developer"],
+      "triggers": ["blocker", "clarification_needed"]
+    }
+  },
+  "routing": {
+    "receives": ["feature_tasks", "bug_fixes"],
+    "sends_to": ["Senior Developer"]
+  }
+}
