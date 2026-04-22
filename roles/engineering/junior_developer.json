@@ -2,11 +2,9 @@
   "role": "Junior Developer",
   "department": "Engineering",
   "level": "Development",
-  "reportsTo": "Software Engineer",
+  "reportsTo": "Software_Engineer",
   "authority": "assisted_coding",
   "skills": {
-    "technical": ["javascript", "html", "css", "basic_python", "git"],
-    "soft": ["communication", "learning", "time_management"],
     "decision_making": {
       "scope": "minimal",
       "types": ["task_approach"],
@@ -24,6 +22,6 @@
   },
   "routing": {
     "receives": ["simple_tasks", "documentation"],
-    "sends_to": ["Software Engineer"]
+    "sends_to": ["Software_Engineer"]
   }
 }

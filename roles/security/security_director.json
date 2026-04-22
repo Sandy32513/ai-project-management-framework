@@ -5,8 +5,6 @@
   "reportsTo": "CISO",
   "authority": "policy_enforcement",
   "skills": {
-    "technical": ["security_architecture", "risk_assessment", "compliance", "incident_response", "penetration_testing"],
-    "soft": ["leadership", "communication", "strategic_planning", "stakeholder_management"],
     "decision_making": {
       "scope": "security_operations",
       "types": ["policy_enforcement", "risk_assessment", "security_operations", "team_management"],
@@ -17,7 +15,7 @@
       "approves": ["security_policies", "risk_treatments", "security_operations"]
     },
     "escalation": {
-      "receives_from": ["Security Architect", "Security Engineer", "SOC Analyst"],
+      "receives_from": ["Security_Architect", "Security_Engineer", "SOC_Analyst"],
       "triggers": ["security_incident", "vulnerability", "compliance_issue"]
     }
   },

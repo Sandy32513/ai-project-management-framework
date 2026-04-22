@@ -2,7 +2,7 @@
   "role": "Security Architect",
   "department": "Security",
   "level": "Technical",
-  "reportsTo": "Security Director",
+  "reportsTo": "Security_Director",
   "authority": "secure_system_design",
   "skills": {
     "decision_making": {
@@ -21,6 +21,6 @@
   },
   "routing": {
     "receives": ["security_design_requests", "architecture_reviews"],
-    "sends_to": ["Security Director"]
+    "sends_to": ["Security_Director"]
   }
 }

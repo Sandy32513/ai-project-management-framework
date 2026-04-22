@@ -1,0 +1,26 @@
+{
+  "role": "CISO",
+  "department": "Security",
+  "level": "Leadership",
+  "reportsTo": "CEO",
+  "authority": "security_governance",
+  "skills": {
+    "decision_making": {
+      "scope": "security_strategy",
+      "types": ["security_strategy", "risk_management", "compliance", "incident_response_strategy"],
+      "threshold": "high_impact"
+    },
+    "task_handling": {
+      "owns": ["security_strategy", "risk_management", "compliance_frameworks", "security_budget"],
+      "approves": ["security_policies", "risk_treatments", "security_budget", "vendor_assessments"]
+    },
+    "escalation": {
+      "receives_from": ["Security_Director", "Security_Architect"],
+      "triggers": ["security_incident", "data_breach", "compliance_violation", "critical_vulnerability"]
+    }
+  },
+  "routing": {
+    "receives": ["security_initiatives", "risk_assessments", "compliance_reports"],
+    "sends_to": ["CEO"]
+  }
+}

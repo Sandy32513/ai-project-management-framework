@@ -15,7 +15,7 @@
       "approves": ["program_timeline", "resource_allocation", "dependency_resolution"]
     },
     "escalation": {
-      "receives_from": ["Product Managers", "Team Leads"],
+      "receives_from": ["Project_Managers", "Team_Leads"],
       "triggers": ["cross_team_blocker", "resource_conflict", "timeline_risk", "budget_overrun"]
     }
   },

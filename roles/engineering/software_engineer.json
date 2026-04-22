@@ -2,7 +2,7 @@
   "role": "Software Engineer",
   "department": "Engineering",
   "level": "Development",
-  "reportsTo": "Senior Developer",
+  "reportsTo": "Senior_Developer",
   "authority": "feature_implementation",
   "skills": {
     "decision_making": {
@@ -16,12 +16,12 @@
       "reviews": ["junior_code"]
     },
     "escalation": {
-      "receives_from": ["Junior Developer"],
+      "receives_from": ["Junior_Developer"],
       "triggers": ["blocker", "clarification_needed"]
     }
   },
   "routing": {
     "receives": ["feature_tasks", "bug_fixes"],
-    "sends_to": ["Senior Developer"]
+    "sends_to": ["Senior_Developer"]
   }
 }

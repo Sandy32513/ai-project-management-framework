@@ -2,7 +2,7 @@
   "role": "Intern",
   "department": "Engineering",
   "level": "Entry",
-  "reportsTo": "Junior Developer",
+  "reportsTo": "Junior_Developer",
   "authority": "learning",
   "skills": {
     "decision_making": {
@@ -22,6 +22,6 @@
   },
   "routing": {
     "receives": ["simple_tasks", "learning_exercises"],
-    "sends_to": ["Junior Developer"]
+    "sends_to": ["Junior_Developer"]
   }
 }

@@ -17,7 +17,7 @@
       "reviews": ["security_metrics", "penetration_tests", "compliance_audits", "incident_reports"]
     },
     "escalation": {
-      "receives_from": ["Security Director", "Security Architect", "SOC Analyst"],
+      "receives_from": ["Security_Director", "Security_Architect", "SOC_Manager"],
       "triggers": ["security_incident", "data_breach", "compliance_violation", "critical_vulnerability"]
     },
     "resource_allocation": {
@@ -27,7 +27,7 @@
     }
   },
   "escalation_path": {
-    "incoming": ["Security Director", "Security Architect", "SOC Analyst"],
+    "incoming": ["Security_Director", "Security_Architect", "SOC_Manager"],
     "outgoing": ["CEO"],
     "emergency": ["immediate_ceo_alert"]
   },

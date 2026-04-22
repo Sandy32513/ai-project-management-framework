@@ -17,7 +17,7 @@
       "reviews": ["sprint_delivery", "team_performance", "stakeholder_feedback"]
     },
     "escalation": {
-      "receives_from": ["Manager", "Team Lead"],
+      "receives_from": ["Manager", "Team_Lead"],
       "triggers": ["delivery_delay", "team_issue", "stakeholder_complaint", "budget_concern"]
     },
     "resource_allocation": {
@@ -27,7 +27,7 @@
     }
   },
   "escalation_path": {
-    "incoming": ["Manager", "Team Lead"],
+    "incoming": ["Manager", "Team_Lead"],
     "outgoing": ["Director"],
     "emergency": ["director_alert"]
   },

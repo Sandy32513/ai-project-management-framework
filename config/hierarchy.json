@@ -18,123 +18,24 @@
     },
     "senior_leadership": {
       "levels": [
-        { "role": "VP Engineering", "authority": "department", "reportsTo": "CTO" },
-        { "role": "VP Product", "authority": "department", "reportsTo": "CEO" },
-        { "role": "VP Sales", "authority": "department", "reportsTo": "CEO" },
-        { "role": "Director Engineering", "authority": "multi_team", "reportsTo": "VP Engineering" },
-        { "role": "Director Product", "authority": "multi_team", "reportsTo": "VP Product" },
-        { "role": "Senior Manager", "authority": "team_group", "reportsTo": "Director Engineering" }
+        { "role": "VP", "authority": "department", "reportsTo": "C-Suite" },
+        { "role": "Director", "authority": "multi_team", "reportsTo": "VP" },
+        { "role": "Senior Manager", "authority": "team_group", "reportsTo": "Director" }
       ]
     },
     "mid_leadership": {
       "levels": [
-        { "role": "Engineering Manager", "authority": "team", "reportsTo": "Director Engineering" },
-        { "role": "Product Manager", "authority": "team", "reportsTo": "VP Product" },
-        { "role": "Team Lead", "authority": "technical", "reportsTo": "Engineering Manager" }
+        { "role": "Manager", "authority": "team", "reportsTo": "Senior Manager" },
+        { "role": "Team Lead", "authority": "technical", "reportsTo": "Manager" }
       ]
     },
     "individual_contributors": {
       "levels": [
         { "role": "Principal Engineer", "authority": "architecture", "reportsTo": "CTO" },
-        { "role": "Tech Lead", "authority": "technical", "reportsTo": "Engineering Manager" },
         { "role": "Senior Engineer", "authority": "complex_problems", "reportsTo": "Team Lead" },
         { "role": "Mid-Level Engineer", "authority": "features", "reportsTo": "Senior Engineer" },
-        { "role": "Junior Engineer", "authority": "basic_tasks", "reportsTo": "Team Lead" },
+        { "role": "Junior Engineer", "authority": "basic_tasks", "reportsTo": "Mid-Level Engineer" },
         { "role": "Intern", "authority": "learning", "reportsTo": "Junior Engineer" }
-      ]
-    },
-    "engineering": {
-      "levels": [
-        { "role": "VP Engineering", "authority": "department", "reportsTo": "CTO" },
-        { "role": "Director Engineering", "authority": "multi_team", "reportsTo": "VP Engineering" },
-        { "role": "Engineering Manager", "authority": "team", "reportsTo": "Director Engineering" },
-        { "role": "Tech Lead", "authority": "technical", "reportsTo": "Engineering Manager" },
-        { "role": "Principal Engineer", "authority": "architecture", "reportsTo": "VP Engineering" },
-        { "role": "Senior Developer", "authority": "complex_problems", "reportsTo": "Tech Lead" },
-        { "role": "Software Engineer", "authority": "features", "reportsTo": "Senior Developer" },
-        { "role": "Junior Developer", "authority": "basic_tasks", "reportsTo": "Software Engineer" },
-        { "role": "Intern", "authority": "learning", "reportsTo": "Junior Developer" }
-      ]
-    },
-    "product": {
-      "levels": [
-        { "role": "VP Product", "authority": "department", "reportsTo": "CEO" },
-        { "role": "Product Director", "authority": "multi_team", "reportsTo": "VP Product" },
-        { "role": "Product Manager", "authority": "team", "reportsTo": "Product Director" },
-        { "role": "Associate PM", "authority": "support", "reportsTo": "Product Manager" },
-        { "role": "PM Intern", "authority": "learning", "reportsTo": "Associate PM" }
-      ]
-    },
-    "design": {
-      "levels": [
-        { "role": "Design Director", "authority": "department", "reportsTo": "VP Product" },
-        { "role": "UX Manager", "authority": "team", "reportsTo": "Design Director" },
-        { "role": "UX Lead", "authority": "technical", "reportsTo": "UX Manager" },
-        { "role": "UI/UX Designer", "authority": "design", "reportsTo": "UX Lead" },
-        { "role": "Visual Designer", "authority": "design", "reportsTo": "UX Lead" },
-        { "role": "Design Intern", "authority": "learning", "reportsTo": "Visual Designer" }
-      ]
-    },
-    "qa": {
-      "levels": [
-        { "role": "QA Director", "authority": "department", "reportsTo": "VP Engineering" },
-        { "role": "QA Lead", "authority": "team", "reportsTo": "QA Director" },
-        { "role": "Senior QA Engineer", "authority": "complex_testing", "reportsTo": "QA Lead" },
-        { "role": "QA Engineer", "authority": "testing", "reportsTo": "Senior QA Engineer" },
-        { "role": "QA Intern", "authority": "learning", "reportsTo": "QA Engineer" }
-      ]
-    },
-    "devops": {
-      "levels": [
-        { "role": "VP DevOps", "authority": "department", "reportsTo": "CTO" },
-        { "role": "DevOps Manager", "authority": "team", "reportsTo": "VP DevOps" },
-        { "role": "DevOps Lead", "authority": "technical", "reportsTo": "DevOps Manager" },
-        { "role": "Cloud Architect", "authority": "architecture", "reportsTo": "VP DevOps" },
-        { "role": "Senior DevOps Engineer", "authority": "complex_problems", "reportsTo": "DevOps Lead" },
-        { "role": "DevOps Engineer", "authority": "operations", "reportsTo": "Senior DevOps Engineer" },
-        { "role": "DevOps Intern", "authority": "learning", "reportsTo": "DevOps Engineer" }
-      ]
-    },
-    "security": {
-      "levels": [
-        { "role": "CISO", "authority": "security", "reportsTo": "CEO" },
-        { "role": "Security Director", "authority": "department", "reportsTo": "CISO" },
-        { "role": "Security Architect", "authority": "architecture", "reportsTo": "Security Director" },
-        { "role": "Security Engineer", "authority": "implementation", "reportsTo": "Security Architect" },
-        { "role": "SOC Analyst", "authority": "monitoring", "reportsTo": "Security Engineer" },
-        { "role": "Security Intern", "authority": "learning", "reportsTo": "SOC Analyst" }
-      ]
-    },
-    "data": {
-      "levels": [
-        { "role": "Head of Data", "authority": "department", "reportsTo": "CTO" },
-        { "role": "Data Architect", "authority": "architecture", "reportsTo": "Head of Data" },
-        { "role": "Data Scientist", "authority": "analysis", "reportsTo": "Data Architect" },
-        { "role": "Data Analyst", "authority": "reporting", "reportsTo": "Data Scientist" },
-        { "role": "Data Intern", "authority": "learning", "reportsTo": "Data Analyst" }
-      ]
-    },
-    "sales": {
-      "levels": [
-        { "role": "VP Sales", "authority": "department", "reportsTo": "CEO" },
-        { "role": "Sales Manager", "authority": "team", "reportsTo": "VP Sales" },
-        { "role": "Account Executive", "authority": "sales", "reportsTo": "Sales Manager" },
-        { "role": "Business Analyst", "authority": "analysis", "reportsTo": "Sales Manager" }
-      ]
-    },
-    "marketing": {
-      "levels": [
-        { "role": "Marketing Manager", "authority": "department", "reportsTo": "VP Sales" },
-        { "role": "SEO Specialist", "authority": "specialist", "reportsTo": "Marketing Manager" }
-      ]
-    },
-    "it_support": {
-      "levels": [
-        { "role": "IT Manager", "authority": "department", "reportsTo": "CIO" },
-        { "role": "System Admin", "authority": "infrastructure", "reportsTo": "IT Manager" },
-        { "role": "IT Support Engineer", "authority": "support", "reportsTo": "System Admin" },
-        { "role": "Helpdesk Technician", "authority": "support", "reportsTo": "IT Support Engineer" },
-        { "role": "IT Intern", "authority": "learning", "reportsTo": "Helpdesk Technician" }
       ]
     }
   },
@@ -153,9 +54,9 @@
   ],
   "escalation": {
     "tiers": [
-      { "tier": 1, "from": ["Intern", "Junior Engineer", "Junior Developer", "QA Intern", "DevOps Intern", "Data Intern"], "to": ["Team Lead", "Tech Lead", "QA Lead"], "timeout": "24h" },
-      { "tier": 2, "from": ["Team Lead", "Tech Lead", "QA Lead", "Engineering Manager", "Product Manager"], "to": ["Director Engineering", "Product Director", "QA Director"], "timeout": "48h" },
-      { "tier": 3, "from": ["Director Engineering", "VP Engineering", "Product Director", "VP Product", "Sales Manager"], "to": ["CTO", "CEO", "VP Sales"], "timeout": "72h" }
+      { "tier": 1, "from": "Individual Contributor", "to": "Team Lead/Manager", "timeout": "24h" },
+      { "tier": 2, "from": "Manager", "to": "Director/VP", "timeout": "48h" },
+      { "tier": 3, "from": "Director/VP", "to": "C-Suite", "timeout": "72h" }
     ],
     "triggers": [
       "priority_critical",
@@ -163,11 +64,7 @@
       "timeline_at_risk",
       "security_breach",
       "resource_conflict"
-    ],
-    "security_escalation": {
-      "triggers": ["security_incident", "data_breach", "critical_vulnerability"],
-      "immediate_to": "CISO"
-    }
+    ]
   },
   "routing": {
     "default_strategy": "skill_match",

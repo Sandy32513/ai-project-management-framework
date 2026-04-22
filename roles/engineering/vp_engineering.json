@@ -5,8 +5,6 @@
   "reportsTo": "CTO",
   "authority": "engineering_strategy",
   "skills": {
-    "technical": ["system_architecture", "technology_strategy", "cloud_infrastructure", "security"],
-    "soft": ["leadership", "strategic_planning", "stakeholder_management", "communication"],
     "decision_making": {
       "scope": "engineering_department",
       "types": ["engineering_strategy", "team_scaling", "technology_selection", "roadmap_planning"],
@@ -17,7 +15,7 @@
       "approves": ["engineering_budget", "hiring_plans", "technology_decisions", "architecture_changes"]
     },
     "escalation": {
-      "receives_from": ["Director Engineering", "Engineering Manager"],
+      "receives_from": ["Director_Engineering", "Engineering_Manager"],
       "triggers": ["team_conflict", "delivery_failure", "technology_crisis", "budget_overrun"]
     }
   },

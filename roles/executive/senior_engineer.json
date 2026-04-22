@@ -2,7 +2,7 @@
   "role": "Senior Engineer",
   "department": "Engineering",
   "level": "Individual Contributor",
-  "reportsTo": "Team Lead",
+  "reportsTo": "Team_Lead",
   "authority": "complex_problems",
   "skills": {
     "decision_making": {
@@ -17,7 +17,7 @@
       "reviews": ["code_submissions", "technical_designs", "implementation_plans"]
     },
     "escalation": {
-      "receives_from": ["Mid-Level Engineer", "Junior Engineer"],
+      "receives_from": ["Mid_Level_Engineer", "Junior_Engineer"],
       "triggers": ["complex_technical_issue", "design_clarification_needed", "performance_issue", "technical_blocker"]
     },
     "resource_allocation": {
@@ -28,7 +28,7 @@
   },
   "escalation_path": {
     "incoming": ["Mid_Level_Engineer", "Junior_Engineer"],
-    "outgoing": ["Team Lead"],
+    "outgoing": ["Team_Lead"],
     "emergency": ["team_lead_alert"]
   },
   "routing_receives": {

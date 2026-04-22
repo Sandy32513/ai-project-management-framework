@@ -17,7 +17,7 @@
       "reviews": ["team_delivery", "sprint_performance", "team_health", "stakeholder_satisfaction"]
     },
     "escalation": {
-      "receives_from": ["Senior Manager", "Manager", "Team Lead"],
+      "receives_from": ["Senior_Manager", "Manager", "Team_Lead"],
       "triggers": ["delivery_delay", "budget_overrun", "team_conflict", "stakeholder_issue"]
     },
     "resource_allocation": {

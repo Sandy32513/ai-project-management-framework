@@ -2,7 +2,7 @@
   "role": "Senior Developer",
   "department": "Engineering",
   "level": "Development",
-  "reportsTo": "Tech Lead",
+  "reportsTo": "Tech_Lead",
   "authority": "core_features",
   "skills": {
     "decision_making": {
@@ -15,12 +15,12 @@
       "approves": ["implementation_details", "code_approaches", "test_coverage"]
     },
     "escalation": {
-      "receives_from": ["Software Engineer", "Junior Developer"],
+      "receives_from": ["Developer", "Junior_Developer"],
       "triggers": ["complex_technical_issue", "blocker", "design_clarification"]
     }
   },
   "routing": {
     "receives": ["complex_features", "technical_challenges"],
-    "sends_to": ["Tech Lead"]
+    "sends_to": ["Tech_Lead"]
   }
 }

@@ -17,7 +17,7 @@
       "reviews": ["daily_progress", "task_completion", "team_availability", "blockers"]
     },
     "escalation": {
-      "receives_from": ["Team Lead", "Senior Engineer"],
+      "receives_from": ["Team_Lead", "Senior_Engineer"],
       "triggers": ["technical_blocker", "timeline_risk", "resource_conflict", "quality_issue"]
     },
     "resource_allocation": {
@@ -27,7 +27,7 @@
     }
   },
   "escalation_path": {
-    "incoming": ["Team Lead", "Senior Engineer"],
+    "incoming": ["Team_Lead", "Senior_Engineer"],
     "outgoing": ["Senior_Manager"],
     "emergency": ["senior_manager_alert"]
   },

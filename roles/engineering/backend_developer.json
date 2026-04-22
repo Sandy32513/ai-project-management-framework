@@ -3,11 +3,10 @@
   "specialization": "Backend",
   "department": "Engineering",
   "level": "Development",
-  "reportsTo": "Tech Lead",
+  "reportsTo": "Tech_Lead",
   "authority": "server_implementation",
   "skills": {
-    "technical": ["node_js", "python", "java", "go", "ruby", "sql", "nosql", "rest", "graphql", "api_design", "database_design"],
-    "soft": ["problem_solving", "communication", "code_review"],
+    "technologies": ["Node.js", "Python", "Java", "Go", "Ruby", "SQL", "NoSQL", "REST", "GraphQL"],
     "decision_making": {
       "scope": "backend_implementation",
       "types": ["api_design", "database_design", "service_architecture", "performance_optimization"],
@@ -23,6 +22,6 @@
   },
   "routing": {
     "receives": ["api_tasks", "backend_projects"],
-    "sends_to": ["Tech Lead"]
+    "sends_to": ["Tech_Lead"]
   }
 }

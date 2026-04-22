@@ -1,14 +1,12 @@
 {
   "role": "Mobile Developer",
-  "description": "Develops mobile applications for iOS and Android platforms. Responsible for mobile app architecture, platform-specific implementation, and app store submissions.",
   "specialization": "Mobile",
   "department": "Engineering",
   "level": "Development",
-  "reportsTo": "Tech Lead",
+  "reportsTo": "Tech_Lead",
   "authority": "mobile_implementation",
   "skills": {
-    "technical": ["ios", "android", "react_native", "flutter", "swift", "kotlin", "mobile_architecture", "app_store_submission"],
-    "soft": ["mobile_ui_design", "cross_platform_development", "performance_optimization", "device_testing"],
+    "technologies": ["iOS", "Android", "React Native", "Flutter", "Swift", "Kotlin"],
     "decision_making": {
       "scope": "mobile_implementation",
       "types": ["mobile_architecture", "platform_decisions", "app_store_strategy", "performance_optimization"],
@@ -24,6 +22,6 @@
   },
   "routing": {
     "receives": ["mobile_tasks", "app_development"],
-    "sends_to": ["Tech Lead"]
+    "sends_to": ["Tech_Lead"]
   }
 }
