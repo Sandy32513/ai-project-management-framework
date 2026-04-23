@@ -11,7 +11,7 @@
       "threshold": "low_impact"
     },
     "task_handling": {
-      "owns": ["sprint_ceremonies", "process_facilitation", " impediment_removal", "team_coaching"],
+      "owns": ["sprint_ceremonies", "process_facilitation", "impediment_removal", "team_coaching"],
       "approves": ["sprint_planning", "retrospective_actions"]
     },
     "escalation": {

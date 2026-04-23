@@ -91,7 +91,7 @@
     "ticket_monitoring": {
       "enabled": true,
       "interval": "15min",
-      "actions": ["status_update", "escalation_check", " SLA_check"]
+      "actions": ["status_update", "escalation_check", "SLA_check"]
     },
     "deployment_approval": {
       "enabled": true,

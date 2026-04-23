@@ -4,9 +4,16 @@
   "description": "AI-driven autonomous project management framework with routing, escalation, decision-making, and resource allocation",
   "main": "src/core/index.js",
   "scripts": {
-    "test": "node test.js",
-    "init": "node -e \"const framework = require('./src/core'); framework.init();\"",
-    "validate": "node -e \"const framework = require('./src/core'); framework.init(); console.log(framework.validate());\""
+    "test": "jest --verbose",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/ test/ --max-warnings 20",
+    "lint:fix": "eslint src/ test/ --fix",
+    "validate": "node -e \"const f = require('./src/core'); f.init(); console.log(JSON.stringify(f.validate(), null, 2));\"",
+    "health": "node -e \"const f = require('./src/core'); f.init(); console.log(JSON.stringify(f.healthCheck(), null, 2));\"",
+    "analyze": "node analyze_roles.js",
+    "init": "node -e \"const f = require('./src/core'); f.init();\"",
+    "audit:security": "npm audit --audit-level=high"
   },
   "keywords": [
     "ai",
@@ -19,6 +26,19 @@
   "author": "",
   "license": "MIT",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sandy32513/ai-project-management-framework.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Sandy32513/ai-project-management-framework/issues"
+  },
+  "homepage": "https://github.com/Sandy32513/ai-project-management-framework#readme",
+  "devDependencies": {
+    "eslint": "^10.2.1",
+    "jest": "^30.3.0"
   }
 }

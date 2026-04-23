@@ -1,7 +1,7 @@
 {
   "role": "CISO",
   "department": "Security",
-  "level": "Leadership",
+  "level": "C-Suite",
   "reportsTo": "CEO",
   "authority": "security_governance",
   "skills": {
