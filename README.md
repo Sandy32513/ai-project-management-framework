@@ -372,18 +372,18 @@ PROJECT CREATION
 ┌─────────────────────────────────────────────────────────────────┐
 │ 1. ROUTING PHASE                                                │
 │    • AI analyzes project requirements                           │
-│    • Matches required skills to available roles                │
-│    • Routes to appropriate department (Engineering/Design/etc) │
-│    • Assigns team based on skill + availability                │
+│    • Matches required skills to available roles                 │
+│    • Routes to appropriate department (Engineering/Design/etc)  │
+│    • Assigns team based on skill + availability                 │
 └─────────────────────────────────────────────────────────────────┘
        │
        ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │ 2. PLANNING PHASE                                               │
-│    • VP/Director reviews project alignment                     │
+│    • VP/Director reviews project alignment                      │
 │    • Manager creates sprint plan                                │
 │    • Tech Lead defines technical approach                       │
-│    • Design Lead creates design timeline                       │
+│    • Design Lead creates design timeline                        │
 │    • QA Lead defines test strategy                              │
 └─────────────────────────────────────────────────────────────────┘
        │
@@ -392,20 +392,20 @@ PROJECT CREATION
 │ 3. EXECUTION PHASE                                              │
 │                                                                 │
 │    ENGINEERING TRACK:                                           │
-│    • Principal Engineer → System Architecture                  │
-│    • Senior Dev → Complex Features                             │
-│    • Mid-Level → Feature Implementation                        │
-│    • Junior → Bug Fixes, Documentation                         │
+│    • Principal Engineer → System Architecture                   │
+│    • Senior Dev → Complex Features                              │
+│    • Mid-Level → Feature Implementation                         │
+│    • Junior → Bug Fixes, Documentation                          │
 │                                                                 │
 │    DESIGN TRACK:                                                │
-│    • UX Lead → User Journey Design                             │
-│    • UI Designer → Wireframes, Prototypes                      │
-│    • Visual Designer → Graphics, Assets                        │
+│    • UX Lead → User Journey Design                              │
+│    • UI Designer → Wireframes, Prototypes                       │
+│    • Visual Designer → Graphics, Assets                         │
 │                                                                 │
-│    QA TRACK:                                                     │
+│    QA TRACK:                                                    │
 │    • QA Lead → Test Plan                                        │
-│    • Senior QA → Automation, Complex Testing                   │
-│    • QA Engineer → Manual Testing, Bug Reports                │
+│    • Senior QA → Automation, Complex Testing                    │
+│    • QA Engineer → Manual Testing, Bug Reports                  │
 └─────────────────────────────────────────────────────────────────┘
        │
        ▼
@@ -414,12 +414,12 @@ PROJECT CREATION
 │                                                                 │
 │    If blocker detected:                                         │
 │    → Team Lead resolves (within 24h)                            │
-│    → If unresolved → Manager (48h)                             │
-│    → If unresolved → Director (72h)                            │
-│    → Critical issues → Immediate C-Suite alert                │
+│    → If unresolved → Manager (48h)                              │
+│    → If unresolved → Director (72h)                             │
+│    → Critical issues → Immediate C-Suite alert                  │
 │                                                                 │
 │    Security Incidents:                                          │
-│    → Auto-escalate to CISO immediately                         │
+│    → Auto-escalate to CISO immediately                          │
 └─────────────────────────────────────────────────────────────────┘
        │
        ▼
@@ -431,7 +431,7 @@ PROJECT CREATION
 │    Strategic decisions → Director / VP                          │
 │    Company-wide decisions → C-Suite / CEO                       │
 │                                                                 │
-│    Budget thresholds trigger escalation:                         │
+│    Budget thresholds trigger escalation:                        │
 │    • <$10K → Manager                                            │
 │    • $10K-50K → Director                                        │
 │    • $50K-500K → VP                                             │
@@ -443,21 +443,21 @@ PROJECT CREATION
 │ 6. RESOURCE REBALANCING                                         │
 │                                                                 │
 │    AI monitors:                                                 │
-│    • Resource utilization (rebalance if >90%)                 │
-│    • Project blockers (reallocate if needed)                   │
+│    • Resource utilization (rebalance if >90%)                   │
+│    • Project blockers (reallocate if needed)                    │
 │    • Priority changes (reprioritize resources)                  │
-│    • Team member availability (backup assignment)              │
+│    • Team member availability (backup assignment)               │
 └─────────────────────────────────────────────────────────────────┘
        │
        ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │ 7. DEPLOYMENT APPROVAL CHAIN                                    │
 │                                                                 │
-│    Dev → Team Lead (auto-approve if tests pass)                │
-│    Staging → Manager (manual approval)                         │
-│    Production → Director (manual approval)                     │
-│    Critical → CTO (final approval)                             │
-│    Major Release → CEO (sign-off)                              │
+│    Dev → Team Lead (auto-approve if tests pass)                 │
+│    Staging → Manager (manual approval)                          │
+│    Production → Director (manual approval)                      │
+│    Critical → CTO (final approval)                              │
+│    Major Release → CEO (sign-off)                               │
 └─────────────────────────────────────────────────────────────────┘
        │
        ▼
@@ -467,7 +467,7 @@ PROJECT CREATION
 │    Daily Reports → Team Lead, Manager                           │
 │    Weekly Reports → Director, VP                                │
 │    Monthly Reports → C-Suite                                    │
-│    Quarterly Audit → CEO (final recipient)                     │
+│    Quarterly Audit → CEO (final recipient)                      │
 │                                                                 │
 │    Reports include:                                             │
 │    • Project completion rate                                    │
