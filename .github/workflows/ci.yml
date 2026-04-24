@@ -1,41 +1,41 @@
-# TASK-024: GitHub Actions CI Pipeline
 name: CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  test:
+  lint-test-audit-validate:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18, 20]
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run linting
-        run: npx eslint src/ test/ --max-warnings 20
+      - name: Run linter
+        run: npm run lint
 
-      - name: Run tests
-        run: npm test
+      - name: Run tests with coverage
+        run: npm test -- --coverage
 
       - name: Run security audit
-        run: npm audit --audit-level=high || true
+        run: npm audit --audit-level=high
 
-      - name: Run role analysis
-        run: node analyze_roles.js
+      - name: Validate configuration and data files
+        run: node scripts/validate.js
 
-      - name: Validate framework
-        run: npm run validate
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/coverage-final.json
+          fail_ci_if_error: false

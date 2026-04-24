@@ -11,7 +11,8 @@ beforeEach(() => {
   framework = new FrameworkEngine();
   framework.init({
     configPath: './config',
-    rolesPath: './roles'
+    rolesPath: './roles',
+    rbac: false // disable RBAC for testing core functionality
   });
 });
 
@@ -202,15 +203,16 @@ describe('ResourceAllocationEngine', () => {
     expect(result.projectId).toBe('proj-001');
   });
 
-  test('rejects allocation at max capacity', () => {
-    // getResourceLoad counts per-project, max is 5
-    for (let i = 0; i < 5; i++) {
-      framework.allocate({ id: 'proj-cap', name: 'Cap' }, { devs: 1 });
-    }
-    // 6th allocation for same project should be rejected
-    const result = framework.allocate({ id: 'proj-cap', name: 'Over' }, { devs: 1 });
-    expect(result.status).toBe('rejected');
-    expect(result.reason).toContain('Max concurrent tasks');
+  test('rejects allocation exceeding per-role capacity', () => {
+    // Clear any previous allocations
+    framework.modules.resources.allocations = [];
+    // intern limit is 1 from config. First allocation should succeed.
+    const first = framework.allocate({ id: 'proj-role' }, { intern: 1 });
+    expect(first.status).toBe('allocated');
+    // Second allocation with same role exceeds global intern limit
+    const second = framework.allocate({ id: 'proj-role' }, { intern: 1 });
+    expect(second.status).toBe('rejected');
+    expect(second.reason).toMatch(/capacity exceeded/i);
   });
 
   test('deallocates resources', () => {
@@ -338,8 +340,9 @@ describe('Security', () => {
     const fw = new FrameworkEngine();
     expect(() => fw.init({
       configPath: '../../etc',
-      rolesPath: './roles'
-    })).toThrow('within the project base directory');
+      rolesPath: './roles',
+      rbac: false // disable RBAC to trigger path check only
+    })).toThrow('Path traversal blocked');
   });
 
   test('injection in project name is blocked', () => {

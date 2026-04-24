@@ -91,16 +91,18 @@ class FrameworkEngine {
   }
 
   init(options = {}) {
+    this.caller = options.caller || null;
+    this.rbacEnabled = options.rbac !== false; // default ON for security
+
     const basePath = options.basePath || path.join(__dirname, '..', '..');
     const configPath = options.configPath ? path.isAbsolute(options.configPath) ? options.configPath : path.join(basePath, options.configPath) : path.join(basePath, 'config');
     const rolesPath = options.rolesPath ? path.isAbsolute(options.rolesPath) ? options.rolesPath : path.join(basePath, options.rolesPath) : path.join(basePath, 'roles');
     
-    // Sanitize paths — prevent path traversal (TASK-018)
     const resolvedConfig = path.resolve(configPath);
     const resolvedRoles = path.resolve(rolesPath);
     const resolvedBase = path.resolve(basePath);
     if (!resolvedConfig.startsWith(resolvedBase) || !resolvedRoles.startsWith(resolvedBase)) {
-      throw new Error('Config and roles paths must be within the project base directory');
+      throw new Error('Path traversal blocked: config and roles must be within base directory');
     }
     
     try {
@@ -110,15 +112,13 @@ class FrameworkEngine {
       
       this.logger.info(`Loaded ${Object.keys(this.roles).length} roles from ${resolvedRoles}`);
       
-      // FIX TASK-001: Load decision levels from core/skills/decision.json or fall back to modules.decision
-      const decisionConfig = this.config._decisionLevels || this.config.modules?.decision || {};
-      
+      const decisionConfig = this.config._decisionConfig || this.config.modules?.decision || {};
       this.modules = {
         routing: new RoutingEngine(this.roles, this.hierarchy, this.logger),
-        escalation: new EscalationEngine(this.config.escalation, this.hierarchy, this.logger),
+        escalation: new EscalationEngine(this.config._escalationConfig || {}, this.hierarchy, this.logger),
         decision: new DecisionEngine(decisionConfig, this.logger),
-        resources: new ResourceAllocationEngine(this.config.modules?.resource_allocation || {}, this.logger),
-        audit: new AuditEngine(this.config.audit || {}, this.logger),
+        resources: new ResourceAllocationEngine(this.config._resourceConfig || {}, this.logger),
+        audit: new AuditEngine(this.config._auditConfig || {}, this.logger),
         validation: new ValidationEngine(this.roles, this.hierarchy, this.logger)
       };
       
@@ -131,34 +131,52 @@ class FrameworkEngine {
     }
   }
 
+  _verifyCaller(minLevel, operation) {
+    if (!this.rbacEnabled) return;
+    if (!this.caller) throw new Error(`Caller identity required for ${operation} (RBAC enabled)`);
+    const callerInfo = this.modules.decision.getAuthorityLevel(this.caller.role, this.roles);
+    const callerLevel = callerInfo?.level || 0;
+    if (callerLevel < minLevel) {
+      throw new Error(`Insufficient authority for ${operation}: ${this.caller.role} (level ${callerLevel}) < level ${minLevel} required`);
+    }
+  }
+
+  _getCallerLevel() {
+    if (!this.caller) return 0;
+    const info = this.modules.decision.getAuthorityLevel(this.caller.role, this.roles);
+    return info?.level || 0;
+  }
+
   loadConfig(configPath, basePath) {
     const config = {};
-    const files = ['core.json', 'hierarchy.json'];
-    
-    files.forEach(file => {
-      const filePath = path.join(configPath, file);
-      if (fs.existsSync(filePath)) {
+    const configMap = [
+      { file: path.join(configPath, 'core.json') },
+      { file: path.join(configPath, 'hierarchy.json') },
+      { file: path.join(basePath, 'core', 'skills', 'decision.json'), key: '_decisionConfig' },
+      { file: path.join(basePath, 'core', 'routing', 'routing.json'), key: '_routingConfig' },
+      { file: path.join(basePath, 'core', 'escalation', 'escalation.json'), key: '_escalationConfig' },
+      { file: path.join(basePath, 'core', 'skills', 'resource_allocation.json'), key: '_resourceConfig' },
+      { file: path.join(basePath, 'core', 'skills', 'audit.json'), key: '_auditConfig' },
+    ];
+
+    configMap.forEach(({ file, key }) => {
+      if (fs.existsSync(file)) {
         try {
-          const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-          Object.assign(config, data);
-        } catch (error) {
-          throw new Error(`Failed to parse config file ${file}: ${error.message}`);
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          if (key) {
+            config[key] = data;
+          } else {
+            Object.assign(config, data);
+          }
+          this.logger.info(`Loaded config: ${path.basename(file)}`);
+        } catch (e) {
+          this.logger.warn(`Config parse failed: ${path.basename(file)} — ${e.message}`);
         }
+      } else {
+        this.logger.debug(`Config not found: ${path.basename(file)}`);
       }
     });
-    
-    // FIX TASK-001: Also load decision levels from core/skills/decision.json
-    const decisionPath = path.join(basePath, 'core', 'skills', 'decision.json');
-    if (fs.existsSync(decisionPath)) {
-      try {
-        const decisionData = JSON.parse(fs.readFileSync(decisionPath, 'utf8'));
-        config._decisionLevels = { levels: decisionData.decision_levels || [] };
-        this.logger.info(`Loaded decision levels from ${decisionPath}`);
-      } catch (error) {
-        this.logger.warn(`Failed to load decision config: ${error.message}`);
-      }
-    }
-    
+
     return config;
   }
 
@@ -190,25 +208,53 @@ class FrameworkEngine {
   // TASK-016: Public API methods now validate and sanitize inputs
   routeProject(project) {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(1, 'routeProject'); // any authenticated role
     const sanitized = InputValidator.sanitizeProject(project);
-    return this.modules.routing.routeProject(sanitized, this.roles);
+    const result = this.modules.routing.routeProject(sanitized, this.roles);
+    this.modules.audit.log({
+      event: 'project_routed',
+      projectId: sanitized.id || sanitized.name,
+      department: sanitized.department,
+      requiredSkills: sanitized.required_skills,
+      result: result
+    });
+    return result;
   }
 
   routeTicket(ticket) {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(1, 'routeTicket');
     const sanitized = InputValidator.sanitizeTicket(ticket);
-    return this.modules.routing.routeTicket(sanitized, this.roles);
+    const result = this.modules.routing.routeTicket(sanitized, this.roles);
+    this.modules.audit.log({
+      event: 'ticket_routed',
+      ticketType: sanitized.type,
+      priority: sanitized.priority,
+      department: sanitized.department,
+      result: result
+    });
+    return result;
   }
 
   escalate(task, reason) {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(1, 'escalate');
     const sanitized = InputValidator.sanitizeTask(task);
     const sanitizedReason = InputValidator.validateString(reason, 'reason', 1000);
-    return this.modules.escalation.escalate(sanitized, sanitizedReason, this.roles);
+    const result = this.modules.escalation.escalate(sanitized, sanitizedReason, this.roles);
+    this.modules.audit.log({
+      event: 'task_escalated',
+      from: sanitized.currentLevel || sanitized.assignedTo,
+      department: sanitized.department,
+      reason: sanitizedReason,
+      result: result
+    });
+    return result;
   }
 
   getEscalationPath(department) {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(1, 'getEscalationPath');
     const sanitized = InputValidator.validateString(department, 'department');
     return this.modules.escalation.getPath(sanitized);
   }
@@ -217,48 +263,104 @@ class FrameworkEngine {
     if (!this.initialized) throw new Error('Framework not initialized');
     InputValidator.validateString(decisionType, 'decisionType');
     InputValidator.validateObject(context, 'context');
-    return this.modules.decision.makeDecision(decisionType, context, this.roles);
+    let result;
+    if (this.rbacEnabled) {
+      this._verifyCaller(1, 'makeDecision');
+      const callerLevel = this._getCallerLevel();
+      result = this.modules.decision.makeDecision(decisionType, context, this.roles, callerLevel);
+    } else {
+      result = this.modules.decision.makeDecision(decisionType, context, this.roles);
+    }
+    this.modules.audit.log({
+      event: 'decision_made',
+      decisionType: decisionType,
+      decision: result.decision,
+      authorityLevel: result.level,
+      requiresEscalation: result.requiresEscalation,
+      context: context
+    });
+    return result;
   }
 
   getAuthorityLevel(role) {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(1, 'getAuthorityLevel');
     InputValidator.validateString(role, 'role');
     return this.modules.decision.getAuthorityLevel(role, this.roles);
   }
 
   allocate(project, resources) {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(4, 'allocate'); // Manager+ required
     InputValidator.validateObject(project, 'project');
     InputValidator.validateObject(resources, 'resources');
-    return this.modules.resources.allocate(project, resources);
+    const result = this.modules.resources.allocate(project, resources);
+    if (result && result.status === 'allocated') {
+      this.modules.audit.log({
+        event: 'resources_allocated',
+        projectId: project.id || project.name,
+        resources: resources,
+        load: result.load
+      });
+    }
+    return result;
   }
 
   deallocate(projectId) {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(4, 'deallocate'); // Manager+ required
     InputValidator.validateString(projectId, 'projectId');
-    return this.modules.resources.deallocate(projectId);
+    const result = this.modules.resources.deallocate(projectId);
+    this.modules.audit.log({
+      event: 'resources_deallocated',
+      projectId: projectId,
+      released: result.released
+    });
+    return result;
   }
 
   rebalance() {
     if (!this.initialized) throw new Error('Framework not initialized');
-    return this.modules.resources.rebalance();
+    this._verifyCaller(5, 'rebalance'); // Director+ required
+    const result = this.modules.resources.rebalance();
+    this.modules.audit.log({
+      event: 'resources_rebalanced',
+      timestamp: result.timestamp,
+      allocationCount: result.allocations.length
+    });
+    return result;
   }
 
   validate() {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(3, 'validate'); // Team Lead+ required
     return this.modules.validation.validate(this.config, this.roles);
   }
 
   generateReport(reportType, period) {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(5, 'generateReport'); // Director+ required
     InputValidator.validateString(reportType, 'reportType');
-    return this.modules.audit.generateReport(reportType, period);
+    const result = this.modules.audit.generateReport(reportType, period);
+    this.modules.audit.log({
+      event: 'report_generated',
+      reportType: reportType,
+      period: period
+    });
+    return result;
   }
 
   sendToCEO(report, priority = 'normal') {
     if (!this.initialized) throw new Error('Framework not initialized');
+    this._verifyCaller(6, 'sendToCEO'); // C-Suite only
     InputValidator.validateObject(report, 'report');
-    return this.modules.audit.sendToCEO(report, priority);
+    const result = this.modules.audit.sendToCEO(report, priority);
+    this.modules.audit.log({
+      event: 'report_sent_to_ceo',
+      reportType: report.type,
+      priority: priority
+    });
+    return result;
   }
 
   // TASK-029: Health check endpoint
@@ -304,10 +406,12 @@ class RoutingEngine {
         return false;
       }
       
-      if (required_skills && required_skills.length > 0 && role.skills?.technical) {
-        const hasSkill = required_skills.some(skill => 
-          role.skills.technical.includes(skill.toLowerCase())
-        );
+      if (required_skills && required_skills.length > 0) {
+        const roleSkills = [
+          ...(role.skills?.technologies || []),
+          ...(role.skills?.task_handling?.owns || []),
+        ].map(s => s.toLowerCase());
+        const hasSkill = required_skills.some(skill => roleSkills.includes(skill.toLowerCase()));
         if (!hasSkill) return false;
       }
       return true;
@@ -348,9 +452,15 @@ class RoutingEngine {
       return { assigned: null, reason: 'No matching role found' };
     }
 
-    // FIX TASK-004: Sort ascending — route to the LOWEST sufficient authority, not highest
+    // TASK-011: Complete priorityOrder with all level types from decision.json
+    const priorityOrder = {
+      'C-Suite': 6, 'Leadership': 5, 'Senior Leadership': 5,
+      'Technical': 4, 'Engineering Leadership': 4, 'Management': 4,
+      'Mid-Level Leadership': 3, 'Development': 3,
+      'Analysis': 2, 'Facilitation': 2, 'Execution': 2, 'Individual Contributor': 2,
+      'Entry': 1
+    };
     const sorted = candidates.sort((a, b) => {
-      const priorityOrder = { 'C-Suite': 6, 'Leadership': 5, 'Technical': 4, 'Development': 3, 'Entry': 1 };
       return (priorityOrder[a.level] || 0) - (priorityOrder[b.level] || 0);
     });
 
@@ -536,9 +646,16 @@ class DecisionEngine {
     this.levels = decisionConfig.levels || decisionConfig.decision_levels || [];
     this.logger = logger;
     this.decisionHistory = [];
+    // Precompute role→level mapping for fast lookup (use l.roles not l.handlers)
+    this._roleIndex = new Map();
+    this.levels.forEach(l => {
+      (l.roles || []).forEach(r => {
+        this._roleIndex.set(r.toLowerCase(), l);
+      });
+    });
   }
 
-  makeDecision(decisionType, context, roles) {
+  makeDecision(decisionType, context, roles, callerLevel = 6) {
     if (!context || typeof context !== 'object') {
       this.logger?.warn('Invalid context provided to makeDecision');
       return { decision: 'rejected', reason: 'Invalid context' };
@@ -546,29 +663,35 @@ class DecisionEngine {
     
     const { budget = 0, impact = 'low', requestedBy } = context;
     
-    let authorityLevel = 1;
-    if (budget > 500000 || impact === 'critical') authorityLevel = 6;
-    else if (budget > 50000 || impact === 'high') authorityLevel = 5;
-    else if (budget > 10000 || impact === 'medium_high') authorityLevel = 4;
-    else if (budget > 1000 || impact === 'medium') authorityLevel = 3;
-    else if (budget > 0 || impact === 'low') authorityLevel = 2;
+    let requiredLevel = 1;
+    if (budget > 500000 || impact === 'critical') requiredLevel = 6;
+    else if (budget > 50000 || impact === 'high') requiredLevel = 5;
+    else if (budget > 10000 || impact === 'medium_high') requiredLevel = 4;
+    else if (budget > 1000 || impact === 'medium') requiredLevel = 3;
+    else if (budget > 0 || impact === 'low') requiredLevel = 2;
 
-    const levelConfig = this.levels.find(l => l.level === authorityLevel);
+    const levelConfig = this.levels.find(l => l.level === requiredLevel);
     
-    // FIX TASK-008: Check if the requester has sufficient authority to approve
+    // TASK-003/TASK-004: RBAC — enforce caller authority meets requiredLevel
     let requiresEscalation = false;
     let decisionOutcome = 'approved';
+    if (callerLevel < requiredLevel) {
+      requiresEscalation = true;
+      decisionOutcome = 'pending_escalation';
+      this.logger?.warn(`Caller authority insufficient: level ${callerLevel} < required ${requiredLevel}`);
+    }
+    
+    // Existing check: requestedBy role's authority (if provided)
     if (requestedBy && roles) {
       const requesterRole = Object.values(roles).find(
         r => r.role === requestedBy || r.role?.toLowerCase() === requestedBy?.toLowerCase()
       );
       if (requesterRole) {
-        const levelMap = { 'C-Suite': 6, 'Leadership': 5, 'Senior Leadership': 5, 'Engineering Leadership': 4, 'Management': 4, 'Technical': 3, 'Development': 2, 'Execution': 2, 'Individual Contributor': 1, 'Entry': 1 };
-        const requesterAuthority = levelMap[requesterRole.level] || 1;
-        if (authorityLevel > requesterAuthority) {
+        const requesterInfo = this.getAuthorityLevel(requestedBy, roles);
+        if (requesterInfo && requiredLevel > requesterInfo.level) {
           requiresEscalation = true;
           decisionOutcome = 'pending_escalation';
-          this.logger?.warn(`Decision requires escalation: requester ${requestedBy} (level ${requesterAuthority}) < required level ${authorityLevel}`);
+          this.logger?.warn(`Decision requires escalation: requester ${requestedBy} (level ${requesterInfo.level}) < required level ${requiredLevel}`);
         }
       }
     }
@@ -577,13 +700,13 @@ class DecisionEngine {
     if (levelConfig?.budget_limit !== null && levelConfig?.budget_limit !== undefined && budget > levelConfig.budget_limit) {
       requiresEscalation = true;
       decisionOutcome = 'pending_escalation';
-      this.logger?.warn(`Budget $${budget} exceeds limit $${levelConfig.budget_limit} for level ${authorityLevel}`);
+      this.logger?.warn(`Budget $${budget} exceeds limit $${levelConfig.budget_limit} for level ${requiredLevel}`);
     }
     
     const decision = {
       decision: decisionOutcome,
       decisionType: decisionType,
-      level: authorityLevel,
+      level: requiredLevel,
       authority: levelConfig?.authority || 'routine',
       budgetLimit: levelConfig?.budget_limit,
       requiresEscalation: requiresEscalation,
@@ -594,39 +717,46 @@ class DecisionEngine {
     };
     
     this.decisionHistory.push(decision);
-    this.logger?.info(`Decision made: ${decisionType} - Level ${authorityLevel} - Outcome: ${decisionOutcome}`);
+    this.logger?.info(`Decision made: ${decisionType} - Level ${requiredLevel} - Outcome: ${decisionOutcome}`);
     
     return decision;
   }
 
   getAuthorityLevel(role, roles) {
     if (!role) return null;
-    
-    const roleData = Object.values(roles).find(r => r.role === role || r.role?.toLowerCase() === role.toLowerCase());
-    if (!roleData) {
-      for (const levelConfig of this.levels) {
-        if (levelConfig.handlers?.includes(role)) {
-          return {
-            role: role,
-            level: levelConfig.level,
-            authority: levelConfig.authority,
-            budgetLimit: levelConfig.budget_limit
-          };
-        }
-      }
-      return null;
+    const roleLower = String(role).toLowerCase();
+
+    // Check precomputed decision-level index first (uses l.roles)
+    const levelConfig = this._roleIndex.get(roleLower);
+    if (levelConfig) {
+      return {
+        role: role,
+        level: levelConfig.level,
+        authority: levelConfig.authority,
+        budgetLimit: levelConfig.budget_limit
+      };
     }
-    
-    const level = this.levels.find(l => 
-      l.handlers?.includes(role)
-    );
-    
-    return {
-      role: role,
-      level: level?.level || (roleData.level === 'C-Suite' ? 6 : roleData.level === 'Leadership' ? 5 : roleData.level === 'Technical' ? 3 : 1),
-      authority: level?.authority || roleData.authority || 'standard',
-      budgetLimit: level?.budget_limit || roleData.budget_limit || 1000
-    };
+
+    // Fallback: try to find the role's own data and map its level category to numeric
+    const roleData = Object.values(roles).find(r => r.role === role || r.role?.toLowerCase() === roleLower);
+    if (roleData) {
+      const levelMap = {
+        'C-Suite': 6, 'Leadership': 5, 'Senior Leadership': 5,
+        'Engineering Leadership': 4, 'Management': 4, 'Technical': 4,
+        'Mid-Level Leadership': 3, 'Development': 3,
+        'Analysis': 2, 'Facilitation': 2, 'Execution': 2, 'Individual Contributor': 2,
+        'Entry': 1
+      };
+      const level = levelMap[roleData.level] || 1;
+      return {
+        role: role,
+        level: level,
+        authority: levelConfig?.authority || roleData.authority || 'standard',
+        budgetLimit: levelConfig?.budget_limit || roleData.budget_limit || 1000
+      };
+    }
+
+    return null;
   }
   
   getHistory() {
@@ -640,7 +770,29 @@ class ResourceAllocationEngine {
     this.logger = logger;
     this.allocations = [];
     this.resourceCapacity = {};
-    this.maxConcurrentTasks = config?.max_concurrent_tasks || 5;
+
+    // resource_allocation.json structure: top-level has 'constraints', not nested under 'resource_allocation'
+    // Use config directly; it contains constraints.max_concurrent_tasks at top level
+    const raw = config || {};
+    const constraints = raw?.constraints || {};
+    const maxTasksConfig = constraints.max_concurrent_tasks;
+
+    // Detect whether max_concurrent_tasks is a mapping object or a simple number
+    if (maxTasksConfig && typeof maxTasksConfig === 'object' && !Array.isArray(maxTasksConfig)) {
+      this.maxConcurrentTasksMap = { ...maxTasksConfig };
+      this.maxConcurrentTasks = Math.max(...Object.values(maxTasksConfig));
+    } else {
+      this.maxConcurrentTasks = maxTasksConfig ?? 5;
+      this.maxConcurrentTasksMap = null;
+    }
+  }
+
+  _getGlobalRoleUsage(roleKey) {
+    const rk = String(roleKey).toLowerCase();
+    return this.allocations.reduce((sum, alloc) => {
+      const count = alloc.resources ? (alloc.resources[rk] || 0) : 0;
+      return sum + count;
+    }, 0);
   }
 
   allocate(project, resources) {
@@ -648,38 +800,61 @@ class ResourceAllocationEngine {
       this.logger?.warn('Invalid project provided to allocate');
       return null;
     }
-    
+
     const projectId = project.id || project.name;
-    const currentLoad = this.getResourceLoad(projectId);
-    
-    // FIX TASK-009: Enforce capacity limits — reject allocation when at max
-    if (currentLoad >= this.maxConcurrentTasks) {
-      this.logger?.warn(`Project ${projectId} at max capacity (${this.maxConcurrentTasks}) — allocation REJECTED`);
-      return {
-        projectId: projectId,
-        resources: resources,
-        timestamp: new Date().toISOString(),
-        status: 'rejected',
-        reason: `Max concurrent tasks (${this.maxConcurrentTasks}) exceeded`,
-        load: currentLoad
-      };
+
+    // Enforce per-role capacity limits if map is configured
+    if (this.maxConcurrentTasksMap) {
+      for (const [roleKey, requestedCount] of Object.entries(resources)) {
+        const count = Number(requestedCount);
+        if (isNaN(count) || count <= 0) continue;
+        const rk = roleKey.toLowerCase();
+        const limit = this.maxConcurrentTasksMap[rk];
+        if (limit !== undefined) {
+          const current = this._getGlobalRoleUsage(rk);
+          if (current + count > limit) {
+            this.logger?.warn(`Capacity exceeded for ${roleKey}: ${current} + ${count} > ${limit}`);
+            return {
+              projectId,
+              resources,
+              timestamp: new Date().toISOString(),
+              status: 'rejected',
+              reason: `Capacity exceeded for ${roleKey}`,
+              load: current
+            };
+          }
+        }
+      }
+    } else {
+      // Fallback to simple per-project allocation count limit (original behavior)
+      const currentLoad = this.getResourceLoad(projectId);
+      if (currentLoad >= this.maxConcurrentTasks) {
+        this.logger?.warn(`Project ${projectId} at max capacity (${this.maxConcurrentTasks}) — allocation REJECTED`);
+        return {
+          projectId,
+          resources,
+          timestamp: new Date().toISOString(),
+          status: 'rejected',
+          reason: `Max concurrent tasks (${this.maxConcurrentTasks}) exceeded`,
+          load: currentLoad
+        };
+      }
     }
-    
+
     const allocation = {
-      projectId: projectId,
-      resources: resources,
+      projectId,
+      resources,
       timestamp: new Date().toISOString(),
-      status: 'allocated',
-      load: currentLoad + 1
+      status: 'allocated'
     };
-    
+
     this.allocations.push(allocation);
     this.logger?.info(`Resources allocated to project: ${projectId}`);
     return allocation;
   }
 
-  // FIX TASK-011: Add resource deallocation
   deallocate(projectId) {
+    if (!projectId) return { projectId, released: 0, timestamp: new Date().toISOString() };
     const before = this.allocations.length;
     this.allocations = this.allocations.filter(a => a.projectId !== projectId);
     const released = before - this.allocations.length;
@@ -694,7 +869,6 @@ class ResourceAllocationEngine {
   checkCapacity(resourceType, threshold = 90) {
     const totalAllocations = this.allocations.length;
     if (totalAllocations === 0) return { atCapacity: false, percentage: 0 };
-    
     const percentage = (totalAllocations / this.maxConcurrentTasks) * 100;
     return {
       atCapacity: percentage >= threshold,
@@ -909,9 +1083,7 @@ class ValidationEngine {
   }
 }
 
-// FIX TASK-020: Export class for proper instantiation and testability
-// Backward-compatible: also export a default instance
-const defaultInstance = new FrameworkEngine();
-module.exports = defaultInstance;
-module.exports.FrameworkEngine = FrameworkEngine;
+// TASK-007: Export class directly — remove singleton instance
+module.exports = FrameworkEngine;
+module.exports.FrameworkEngine = FrameworkEngine; // named export for backward compatibility
 module.exports.InputValidator = InputValidator;

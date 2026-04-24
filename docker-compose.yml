@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  framework:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ai-pm-framework:latest
+    container_name: ai-framework
+    volumes:
+      # Mount source code for live development
+      - ./src:/app/src
+      - ./config:/app/config
+      - ./roles:/app/roles
+      - ./core:/app/core
+    environment:
+      - NODE_ENV=development
+    command: /bin/sh -c "npm test -- --watchAll"
+    # For interactive debugging:
+    # stdin_open: true
+    # tty: true
