@@ -303,7 +303,71 @@ describe('Input Validation & Security', () => {
     const fw = new FrameworkEngine();
     expect(() => fw.init({
       configPath: '../../../../etc/passwd',
-      rolesPath: './roles'
+      rolesPath: './roles',
+      rbac: false
     })).toThrow('Path traversal blocked');
+  });
+});
+
+describe('AuditEngine — Hash Chain (TASK-014)', () => {
+  let framework;
+  beforeEach(() => {
+    framework = new FrameworkEngine();
+    framework.init({ rbac: false });
+  });
+
+  test('should create append-only log with SHA-256 hash chain', () => {
+    const audit = framework.modules.audit;
+    expect(audit.logs.length).toBe(0);
+    expect(audit._chain.length).toBe(0);
+
+    // Log a few events
+    framework.routeProject({ name: 'P1', department: 'Engineering' });
+    framework.routeProject({ name: 'P2', department: 'Security' });
+
+    expect(audit.logs.length).toBe(2);
+    expect(audit._chain.length).toBe(2);
+
+    // Each chain entry should have hash and previousHash (except first has null previous)
+    const first = audit._chain[0];
+    expect(first.previousHash).toBeNull();
+    expect(first.hash).toBeTruthy();
+    expect(typeof first.hash).toBe('string');
+    expect(first.hash.length).toBe(64); // SHA-256 hex length
+
+    const second = audit._chain[1];
+    expect(second.previousHash).toBe(first.hash);
+    expect(second.hash).toBeTruthy();
+  });
+
+  test('should verify chain integrity', () => {
+    const audit = framework.modules.audit;
+    framework.routeProject({ name: 'P1', department: 'Engineering' });
+    framework.routeProject({ name: 'P2', department: 'Security' });
+
+    const result = audit.verifyChain();
+    expect(result.valid).toBe(true);
+    expect(result.length).toBe(2);
+    expect(result.lastHash).toBe(audit._chain[audit._chain.length - 1].hash);
+  });
+
+  test('should detect tampering if any entry modified', () => {
+    const audit = framework.modules.audit;
+    framework.routeProject({ name: 'P1', department: 'Engineering' });
+    framework.routeProject({ name: 'P2', department: 'Security' });
+
+    // Tamper with first log entry directly (mutation of logs array)
+    audit.logs[0].department = 'Hacked';
+
+    const result = audit.verifyChain();
+    expect(result.valid).toBe(false);
+  });
+
+  test('should include chainHash and integrity in reports', () => {
+    framework.routeProject({ name: 'P1', department: 'Engineering' });
+    const report = framework.generateReport('daily_ticket', 'today');
+    expect(report.chainHash).toBeTruthy();
+    expect(report.integrity).toBe('verified');
+    expect(report.chainHash.length).toBe(64);
   });
 });
